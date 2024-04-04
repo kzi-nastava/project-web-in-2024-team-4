@@ -25,6 +25,8 @@ public class Proizvod implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Prodavac prodavac;
 
+
+    ///////////////////////
     //Diskutabilnooo
     private boolean ostavljenaRecenzija_od_Kupca;
     private boolean ostavljenaRecenzija_od_Prodavca;

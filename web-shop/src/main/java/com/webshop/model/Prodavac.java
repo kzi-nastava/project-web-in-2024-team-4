@@ -15,6 +15,7 @@ public class Prodavac implements Serializable {
 
     @OneToMany(mappedBy = "prodavac")
     private Set<Proizvod> proizvodi = new HashSet<>();
-
+    @OneToMany(mappedBy = "recenzijeProdavca")
+    private ArrayList<Recenzija>recenzijeKorisnika_Prodavac=new ArrayList<>();
     private  double prosecnaOcenaProdavac;
 }

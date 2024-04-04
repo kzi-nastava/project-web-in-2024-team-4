@@ -18,4 +18,9 @@ public class Recenzija implements Serializable {
     private LocalDate datum_recenzije;
     @ManyToOne
     private Korisnik daoRecenziju;
+    @ManyToOne
+    private Kupac recenzijaKupca;
+    @ManyToOne
+    private Prodavac recenzijeProdavca;
+
 }

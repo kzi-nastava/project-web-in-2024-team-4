@@ -36,6 +36,7 @@ public class Korisnik implements Serializable{
     //@Transient
     private String opis;
     @Column
+    @Enumerated(EnumType.STRING)
     private Uloga uloga;
     @Column
     private  boolean blokiran;

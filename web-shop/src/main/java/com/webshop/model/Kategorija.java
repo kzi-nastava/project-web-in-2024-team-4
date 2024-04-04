@@ -8,6 +8,7 @@ import java.util.Set;
 @Entity
 public class Kategorija implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_Kategorije;
     @OneToMany(mappedBy = "kategorija",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Proizvod> proizvodi = new HashSet<>();
