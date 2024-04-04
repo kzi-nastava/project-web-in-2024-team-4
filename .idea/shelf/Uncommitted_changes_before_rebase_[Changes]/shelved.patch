@@ -1,0 +1,16 @@
+Index: web-shop/src/main/java/com/webshop/model/Prodavac.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.webshop.model;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Map;\r\nimport java.util.Set;\r\n\r\npublic class Prodavac extends Korisnik{\r\n    private Set<Proizvod>proizvodiNaProdaju;\r\n    private ArrayList<Recenzija>recenzijeProdavca;\r\n    private  double prosecnaOcenaProdavac;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/web-shop/src/main/java/com/webshop/model/Prodavac.java b/web-shop/src/main/java/com/webshop/model/Prodavac.java
+--- a/web-shop/src/main/java/com/webshop/model/Prodavac.java	(revision 05e7711407a57b4fb5677995c9740e73455cd09f)
++++ b/web-shop/src/main/java/com/webshop/model/Prodavac.java	(date 1712150898555)
+@@ -8,4 +8,5 @@
+     private Set<Proizvod>proizvodiNaProdaju;
+     private ArrayList<Recenzija>recenzijeProdavca;
+     private  double prosecnaOcenaProdavac;
++    private double broj3;
+ }
