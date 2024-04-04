@@ -17,4 +17,36 @@ public class Kupac implements Serializable {
     private  double prosecnaOcenaKupac;
     @OneToMany(mappedBy = "recenzijaKupca")
     private ArrayList<Recenzija>recenzijeKorisnika_Kupac=new ArrayList<>();
+
+    public Long getIdKupca() {
+        return idKupca;
+    }
+
+    public void setIdKupca(Long idKupca) {
+        this.idKupca = idKupca;
+    }
+
+    public ArrayList<Proizvod> getKupljeniProizvodi() {
+        return kupljeniProizvodi;
+    }
+
+    public void setKupljeniProizvodi(ArrayList<Proizvod> kupljeniProizvodi) {
+        this.kupljeniProizvodi = kupljeniProizvodi;
+    }
+
+    public double getProsecnaOcenaKupac() {
+        return prosecnaOcenaKupac;
+    }
+
+    public void setProsecnaOcenaKupac(double prosecnaOcenaKupac) {
+        this.prosecnaOcenaKupac = prosecnaOcenaKupac;
+    }
+
+    public ArrayList<Recenzija> getRecenzijeKorisnika_Kupac() {
+        return recenzijeKorisnika_Kupac;
+    }
+
+    public void setRecenzijeKorisnika_Kupac(ArrayList<Recenzija> recenzijeKorisnika_Kupac) {
+        this.recenzijeKorisnika_Kupac = recenzijeKorisnika_Kupac;
+    }
 }

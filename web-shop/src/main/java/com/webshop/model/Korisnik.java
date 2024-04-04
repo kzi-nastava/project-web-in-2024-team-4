@@ -41,6 +41,10 @@ public class Korisnik implements Serializable{
     @Column
     private  boolean blokiran;
     public enum Uloga{Kupac,Prodavac,Administrator};
+    @OneToOne
+    private PrijavaProfila prijava_profila;
+    @OneToOne
+    private PrijavaProfila odnosi_prijava;
 
     public long getId() {
         return id;
