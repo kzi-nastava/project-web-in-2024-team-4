@@ -15,30 +15,21 @@ public class Korisnik implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private  String ime;
-    @Column
     private String prezime;
-    @Column
     @NaturalId
     private String userName;
-    @Column
     @NaturalId
     private String mejlAdresa;
-    @Column
     private String brojTelefona;
-    @Column
     private String lozinka;
-    @Column
     private LocalDate datumRodjenja;
     //@Transient
     private String prof_Slika; //Putanje do slike
     //@Transient
     private String opis;
-    @Column
     @Enumerated(EnumType.STRING)
     private Uloga uloga;
-    @Column
     private  boolean blokiran;
     public enum Uloga{Kupac,Prodavac,Administrator};
 

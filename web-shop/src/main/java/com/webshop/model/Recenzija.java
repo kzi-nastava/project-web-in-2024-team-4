@@ -9,18 +9,17 @@ import java.util.ArrayList;
 import java.util.Date;
 @Entity
 public class Recenzija implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRecenzije;
-    private double ocena;
-    private  String komentar;
-    private LocalDate datum_recenzije;
-    @ManyToOne
-    private Korisnik daoRecenziju;
-    @ManyToOne
-    private Kupac recenzijaKupca;
-    @ManyToOne
-    private Prodavac recenzijeProdavca;
+    private  long id;
 
+    private double ocena;
+    private String komentar;
+    @Temporal(TemporalType.DATE)
+    private LocalDate datum_recenzije;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "korisnik_id")
+    private Korisnik korisnik;
 }
+
