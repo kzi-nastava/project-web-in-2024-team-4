@@ -4,18 +4,12 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-@Entity
-public class Prodavac implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProdavca;
 
-    @OneToMany(mappedBy = "prodavac")
-    private Set<Proizvod> proizvodi = new HashSet<>();
-    @OneToMany(mappedBy = "recenzijeProdavca")
-    private ArrayList<Recenzija>recenzijeKorisnika_Prodavac=new ArrayList<>();
-    private  double prosecnaOcenaProdavac;
+@Entity
+@PrimaryKeyJoinColumn(name = "id")
+public class Prodavac extends Korisnik{
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private ArrayList<Proizvod>proizvodi_na_prodaju=new ArrayList<>();
+    private double prosecna_ocena;
 }
