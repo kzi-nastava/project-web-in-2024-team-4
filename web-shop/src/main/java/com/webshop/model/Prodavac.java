@@ -11,5 +11,6 @@ public class Prodavac extends Korisnik{
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private ArrayList<Proizvod>proizvodi_na_prodaju=new ArrayList<>();
+    @Column
     private double prosecna_ocena;
 }

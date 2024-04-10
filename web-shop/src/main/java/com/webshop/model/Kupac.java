@@ -12,6 +12,7 @@ import java.util.Set;
 public class Kupac extends Korisnik{
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private ArrayList<Proizvod>kupljeni_proizvodi=new ArrayList<>();
+    @Column
     private double prosecna_ocena;
 }
 
