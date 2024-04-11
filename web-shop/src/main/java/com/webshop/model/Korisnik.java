@@ -22,7 +22,6 @@ public class Korisnik implements Serializable {
     private String broj_telefona;
 
     private String lozinka;
-    @Temporal(TemporalType.DATE)
     private String datum_rodjenja;
     private  String profilna_slika;
     private String opis;
