@@ -17,9 +17,7 @@ public class Recenzija implements Serializable {
     private String komentar;
     @Temporal(TemporalType.DATE)
     private LocalDate datum_recenzije;
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "korisnik_id")
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Korisnik korisnik;
 }
 

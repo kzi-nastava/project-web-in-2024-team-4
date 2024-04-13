@@ -8,11 +8,12 @@ import java.io.Serializable;
 @Entity
 public class Ponuda implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "kupac_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Kupac kupac;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Proizvod proizvod;
 
     private double cena;
 

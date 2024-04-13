@@ -8,10 +8,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Set;
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
+@DiscriminatorValue("Kupac")
 public class Kupac extends Korisnik{
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private ArrayList<Proizvod>kupljeni_proizvodi=new ArrayList<>();
+    @OneToMany(mappedBy ="kupac",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private ArrayList<Proizvod>kupljeni_proizvodi;
+    @OneToMany(mappedBy = "korisnik",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private ArrayList<Recenzija> dobijeneRecenzije;
+    @OneToMany(mappedBy = "kupac",fetch = FetchType.EAGER,orphanRemoval = true)
+    private ArrayList<Ponuda>ponude;
     @Column
     private double prosecna_ocena;
 }

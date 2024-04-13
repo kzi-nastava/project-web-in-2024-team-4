@@ -6,11 +6,12 @@ import org.hibernate.annotations.NaturalId;
 import java.io.Serializable;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="uloga",discriminatorType = DiscriminatorType.STRING)
 public class Korisnik implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String ime;
     private String prezime;
     @NaturalId
@@ -27,6 +28,7 @@ public class Korisnik implements Serializable {
     private String opis;
     public enum Uloga {Kupac, Prodavac, Administrator};
     @Enumerated(EnumType.STRING)
+    @Column(insertable = false,updatable = false)
     private Uloga uloga;
     private  boolean blokiran;
 

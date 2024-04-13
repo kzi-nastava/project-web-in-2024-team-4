@@ -17,7 +17,7 @@ public class Proizvod implements Serializable {
     private String opis;
     private String slika;//Putanja do slike
     //Kategorija
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Kategorija kategorija;
     private double cena;
     public enum Tip_Prodaje{Fiksna_Cena,Aukcija};
@@ -26,13 +26,15 @@ public class Proizvod implements Serializable {
     @Temporal(TemporalType.DATE)
     private LocalDate datumObjavljivanja;
 
-    //Punuda
-    @OneToMany
+    //Ponuda
+    @OneToMany(mappedBy = "proizvod",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     private ArrayList<Ponuda>ponude=new ArrayList<>();
 
     //Prodavac
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Prodavac prodavac;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Kupac kupac;
     private boolean ostavljenaRecenzijaKupac;
     private boolean ostavljenaRecenzijaProdavac;
 

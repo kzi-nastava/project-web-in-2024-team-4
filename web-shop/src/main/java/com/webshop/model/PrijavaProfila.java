@@ -14,12 +14,12 @@ public class PrijavaProfila implements Serializable {
     private String razlog_prijave;
     @Temporal(TemporalType.DATE)
     private LocalDate datum_podnosenja_prijave;
-    @OneToOne
-    @JoinColumn(name = "korisnik_podnositelj_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "podneoPrijavu_ID", referencedColumnName = "id")
     private Korisnik korisnikPodnositelj;
 
-    @OneToOne
-    @JoinColumn(name = "korisnik_odnosi_se_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "odnosiSePrijava_ID", referencedColumnName = "id")
     private Korisnik korisnikOdnosiSe;
 
     public enum StatusPrijave {Podneta, Odbijena, Prihvaćena};
