@@ -41,15 +41,15 @@ INSERT INTO KORISNIK_PROIZVODi_NA_PRODAJU (prodavac_id,proizvodi_na_prodaju_id) 
 INSERT INTO KORISNIK_PROIZVODi_NA_PRODAJU (prodavac_id,proizvodi_na_prodaju_id) values (2,2);
 INSERT INTO KORISNIK_PROIZVODi_NA_PRODAJU (prodavac_id,proizvodi_na_prodaju_id) values (3,3);
 */
-INSERT INTO PONUDA (cena,kupac_id,proizvod_id) values (1000,1,2);
-INSERT INTO PONUDA (cena,kupac_id,proizvod_id) values (2000,1,1);
-INSERT INTO PONUDA (cena,kupac_id,proizvod_id) values (3000,3,3);
-INSERT INTO PONUDA (cena,kupac_id,proizvod_id) values (3000,2,1);
+INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (1000,1,2,current_timestamp);
+INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (2000,1,1,current_timestamp);
+INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,3,3,current_timestamp);
+INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,2,1,current_timestamp);
 
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_id) values (current_date,4.68,'Neki komentar',1);
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_id) values (current_date,4.54,'Neki komentar1',2);
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_id) values (current_date,3.68,'Neki komentar2',3);
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_id) values (current_date,3.68,'Neki komentar2',1);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,4.68,'Neki komentar',1);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,4.54,'Neki komentar1',2);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',3);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',1);
 
 
 INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,1,3,'nisu placeni racuni','Podneta');

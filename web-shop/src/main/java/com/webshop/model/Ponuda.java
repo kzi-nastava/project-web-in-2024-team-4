@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 
 @Entity
 public class Ponuda implements Serializable{
@@ -15,6 +17,8 @@ public class Ponuda implements Serializable{
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Proizvod proizvod;
 
+    //LcalDateTime ponuda postavljena
+    LocalDateTime ponuda_postavljena;
     private double cena;
 
 }

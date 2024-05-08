@@ -18,6 +18,10 @@ public class Recenzija implements Serializable {
     @Temporal(TemporalType.DATE)
     private LocalDate datum_recenzije;
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Korisnik korisnik;
+    private Korisnik korisnik_primio;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Korisnik korisnik_dao;
+    //Kupac,Prodavac
+    //Ko je dao recenziju
 }
 

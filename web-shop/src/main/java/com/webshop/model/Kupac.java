@@ -12,8 +12,10 @@ import java.util.Set;
 public class Kupac extends Korisnik{
     @OneToMany(mappedBy ="kupac",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private ArrayList<Proizvod>kupljeni_proizvodi;
-    @OneToMany(mappedBy = "korisnik",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "korisnik_primio",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private ArrayList<Recenzija> dobijeneRecenzije;
+    @OneToMany(mappedBy = "korisnik_dao",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private ArrayList<Recenzija> dateRecenzije;
     @OneToMany(mappedBy = "kupac",fetch = FetchType.EAGER,orphanRemoval = true)
     private ArrayList<Ponuda>ponude;
     @Column
