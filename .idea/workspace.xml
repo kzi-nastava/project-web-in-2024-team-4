@@ -5,17 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/Enumeracije/TipProdaje.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/Enumeracije/UlogaKorisnika.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/ProizvodController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/ProizvodDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/ProizvodService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kategorija.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kategorija.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Korisnik.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Korisnik.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kupac.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kupac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Ponuda.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Ponuda.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Prodavac.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Prodavac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Recenzija.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Recenzija.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Proizvod.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Proizvod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -50,7 +65,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.WebShopApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;BackEndFunkcionalnosti&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;testiranjeFunkcionalnosti&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Web Programiranje/5. REST i Spring Boot/demo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -104,6 +119,9 @@
       <workItem from="1714833193132" duration="23000" />
       <workItem from="1714833223202" duration="21000" />
       <workItem from="1715194905844" duration="1562000" />
+      <workItem from="1715635233907" duration="6000" />
+      <workItem from="1715635340079" duration="3553000" />
+      <workItem from="1715638906421" duration="4617000" />
     </task>
     <servers />
   </component>

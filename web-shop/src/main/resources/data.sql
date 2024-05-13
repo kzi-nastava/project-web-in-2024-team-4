@@ -14,10 +14,10 @@ INSERT INTO WORKING (project_id, employee_id) VALUES (1, 1);
 INSERT INTO WORKING (project_id, employee_id) VALUES (1, 2);
 INSERT INTO WORKING (project_id, employee_id) VALUES (2, 3);
 
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Kristijan','Mrkalj','kristijan','email@gmail.com','0670000000','12345678','01-01-1999','url_slike','opis_slike','Kupac',false,4.66);
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Isidor','Ivanov','isidor','email1@gmail.com','0640000000','87654321','01-03-2004','url_slike1','opis_slike1','Prodavac',false,3.66);
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Stefan','Stefanovic','stefan','email2@gmail.com','0650000000','31351251','21-06-2003','url_slike2','opis_slike2','Administrator',false,2.6);
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Nemanja','Radic','neca','email3@gmail.com','0650000000','313512521','21-06-2002','url_slike3','opis_slike3','Kupac',false,4.32);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Kristijan','Mrkalj','kristijan','email@gmail.com','0670000000','12345678','01-01-1999','url_slike','opis_slike',1,false,4.66);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Isidor','Ivanov','isidor','email1@gmail.com','0640000000','87654321','01-03-2004','url_slike1','opis_slike1',1,false,3.66);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Stefan','Stefanovic','stefan','email2@gmail.com','0650000000','31351251','21-06-2003','url_slike2','opis_slike2',1,false,2.6);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Nemanja','Radic','neca','email3@gmail.com','0650000000','313512521','21-06-2002','url_slike3','opis_slike3',1,false,4.32);
 
 
 
@@ -26,10 +26,10 @@ INSERT INTO KATEGORIJA (naziv)values('Telefoni');
 INSERT INTO KATEGORIJA (naziv)values('Tableti');
 INSERT INTO KATEGORIJA (naziv)values('Mali kucni aparatici');
 
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('LG G500','televizor u boji','slika1',5000,'Fiksna_Cena',false,false,true,1,1,current_date,1);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Iphone 11','telefon','slika2',2000,'Aukcija',true,false,false,1,1,current_date,1);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'Fiksna_Cena',false,false,true,1,1,current_date,4);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'Fiksna_Cena',false,false,true,1,1,current_date,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('LG G500','televizor u boji','slika1',5000,'FiksnaCena',false,false,true,1,1,current_timestamp,1);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Iphone 11','telefon','slika2',2000,'Aukcija',true,false,false,2,2,current_timestamp,1);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,3,current_timestamp,4);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
 
 /*
 INSERT INTO KORISNIK_KUPLJENI_PROIZVODI (kupac_id,kupljeni_proizvodi_id) values (1,1);

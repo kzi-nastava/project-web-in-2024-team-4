@@ -1,5 +1,6 @@
 package com.webshop.model;
 
+import com.webshop.Enumeracije.UlogaKorisnika;
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
@@ -26,10 +27,9 @@ public class Korisnik implements Serializable {
     private String datum_rodjenja;
     private  String profilna_slika;
     private String opis;
-    public enum Uloga {Kupac, Prodavac, Administrator};
     @Enumerated(EnumType.STRING)
     @Column(insertable = false,updatable = false)
-    private Uloga uloga;
+    private UlogaKorisnika.Uloga uloga;
     private  boolean blokiran;
 
 }
