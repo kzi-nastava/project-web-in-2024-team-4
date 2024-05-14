@@ -16,7 +16,7 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/proizvodi")
 public class ProizvodController {
     @Autowired
     private ProizvodRepository proizvodRepository;
