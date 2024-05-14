@@ -1,7 +1,10 @@
 package com.webshop.service;
 
+import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.dto.ProizvodDto;
+import com.webshop.model.Kategorija;
 import com.webshop.model.Proizvod;
+import com.webshop.repository.KategorijaRepository;
 import com.webshop.repository.ProizvodRepository;
 import org.apache.logging.log4j.message.ExitMessage;
 import org.apache.logging.log4j.message.Message;
@@ -17,12 +20,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalLong;
 
 @Service
 public class ProizvodService {
     @Autowired
     private ProizvodRepository proizvodRepository;
-
+    @Autowired
+    private KategorijaRepository kategorijaRepository;
     public List<ProizvodDto> getAllProducts(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Proizvod> products = proizvodRepository.findAll(pageable);
@@ -47,8 +52,19 @@ public class ProizvodService {
             for (Proizvod p : proizvod.get()) {
                 proizvodDtos.add(new ProizvodDto(p));
             }
+        }else{
+            throw new RuntimeException("Ne Postoji proizvod sa tom filtracijom");
         }
         return  proizvodDtos;
+    }
+
+    public List<ProizvodDto> findFilteredProducts(Double minPrice, Double maxPrice, TipProdaje.tipProdaje tipProdaje, String category) {
+        List<Proizvod> proizvods=proizvodRepository.findProductsByFilters(minPrice, maxPrice, tipProdaje, category);
+        List<ProizvodDto>proizvodDtos=new ArrayList<>();
+        for(Proizvod p: proizvods){
+            proizvodDtos.add(convertToDTO(p));
+        }
+        return proizvodDtos;
     }
 
         private ProizvodDto convertToDTO(Proizvod product) {
