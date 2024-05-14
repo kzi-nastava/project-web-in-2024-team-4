@@ -16,17 +16,22 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
-@RequestMapping("/proizvodi")
+@RequestMapping("proizvod")
 public class ProizvodController {
     @Autowired
     private ProizvodRepository proizvodRepository;
     @Autowired
     private ProizvodService proizvodService;
 
-    @GetMapping
+    @GetMapping("/lista-proizvoda")
     public ResponseEntity<List<ProizvodDto>> getAllProducts(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue ="10")int size){
         List<ProizvodDto> proizvod=proizvodService.getAllProducts(page,size);
         return  ResponseEntity.ok(proizvod);
+    }
+    @GetMapping("/proizvodi")
+    public ResponseEntity<List<ProizvodDto>> findAllByNazivContainsIgnoreCaseOrOpisContainsIgnoreCase(@RequestParam(required = false) String naziv,@RequestParam(required = false) String opis){
+        List<ProizvodDto>proizvodDtos=proizvodService.findAllByNazivContainsIgnoreCaseOrOpisContainsIgnoreCase(naziv,opis);
+        return  ResponseEntity.ok(proizvodDtos);
     }
     @GetMapping("/{id}")
     public ResponseEntity<ProizvodDto>getOneProducts(@PathVariable long id){

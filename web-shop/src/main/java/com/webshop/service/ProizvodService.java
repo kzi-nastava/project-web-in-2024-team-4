@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,16 @@ public class ProizvodService {
             //Ili return Null
             throw new RuntimeException("Proizvod sa ID-em "+id+" ne postoji");
         }
+    }
+    public  List<ProizvodDto> findAllByNazivContainsIgnoreCaseOrOpisContainsIgnoreCase(String naziv,String opis){
+        Optional<List<Proizvod>> proizvod=proizvodRepository.findAllByNazivContainsIgnoreCaseOrOpisContainsIgnoreCase(naziv,opis);
+        List<ProizvodDto> proizvodDtos=new ArrayList<>();
+        if(proizvod.isPresent()) {
+            for (Proizvod p : proizvod.get()) {
+                proizvodDtos.add(new ProizvodDto(p));
+            }
+        }
+        return  proizvodDtos;
     }
 
         private ProizvodDto convertToDTO(Proizvod product) {
