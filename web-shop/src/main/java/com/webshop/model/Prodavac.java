@@ -1,5 +1,7 @@
 package com.webshop.model;
 
+import com.webshop.Enumeracije.UlogaKorisnika;
+import com.webshop.dto.KorisnikRegistracijaDto;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("Prodavac")
+@DiscriminatorValue("PRODAVAC")
 public class Prodavac extends Korisnik{
 
     @OneToMany(mappedBy ="prodavac" ,fetch = FetchType.EAGER)
@@ -50,4 +52,9 @@ public class Prodavac extends Korisnik{
     public void setProsecna_ocena(double prosecna_ocena) {
         this.prosecna_ocena = prosecna_ocena;
     }
+    public  Prodavac(KorisnikRegistracijaDto korisnikRegistracijaDto){
+        super(korisnikRegistracijaDto);
+        setUloga(UlogaKorisnika.Uloga.PRODAVAC);
+    }
+    public Prodavac(){}
 }

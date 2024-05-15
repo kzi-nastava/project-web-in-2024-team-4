@@ -1,6 +1,8 @@
 package com.webshop.model;
 
 
+import com.webshop.Enumeracije.UlogaKorisnika;
+import com.webshop.dto.KorisnikRegistracijaDto;
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 @Entity
-@DiscriminatorValue("Kupac")
+@DiscriminatorValue("KUPAC")
 public class Kupac extends Korisnik{
     @OneToMany(mappedBy ="kupac",fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Proizvod> kupljeni_proizvodi;
@@ -61,5 +63,11 @@ public class Kupac extends Korisnik{
     public void setProsecna_ocena(double prosecna_ocena) {
         this.prosecna_ocena = prosecna_ocena;
     }
+
+    public  Kupac(KorisnikRegistracijaDto korisnikRegistracijaDto){
+        super(korisnikRegistracijaDto);
+        setUloga(UlogaKorisnika.Uloga.KUPAC);
+    }
+    public Kupac(){}
 }
 
