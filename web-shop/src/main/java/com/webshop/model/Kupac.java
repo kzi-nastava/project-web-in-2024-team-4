@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("KUPAC")
 public class Kupac extends Korisnik{
     @OneToMany(mappedBy ="kupac",fetch = FetchType.EAGER,orphanRemoval = true)
-    private List<Proizvod> kupljeni_proizvodi;
+    private List<Proizvod> kupljeniProizvodi;
     @OneToMany(mappedBy = "korisnik_primio",fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Recenzija> dobijeneRecenzije;
     @OneToMany(mappedBy = "korisnik_dao",fetch = FetchType.EAGER,orphanRemoval = true)
@@ -22,14 +23,14 @@ public class Kupac extends Korisnik{
     @OneToMany(mappedBy = "kupac",fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Ponuda>ponude;
     @Column
-    private double prosecna_ocena;
+    private double prosecnaOcena;
 
     public List<Proizvod> getKupljeni_proizvodi() {
-        return kupljeni_proizvodi;
+        return kupljeniProizvodi;
     }
 
     public void setKupljeni_proizvodi(ArrayList<Proizvod> kupljeni_proizvodi) {
-        this.kupljeni_proizvodi = kupljeni_proizvodi;
+        this.kupljeniProizvodi = kupljeni_proizvodi;
     }
 
     public List<Recenzija> getDobijeneRecenzije() {
@@ -57,11 +58,11 @@ public class Kupac extends Korisnik{
     }
 
     public double getProsecna_ocena() {
-        return prosecna_ocena;
+        return prosecnaOcena;
     }
 
     public void setProsecna_ocena(double prosecna_ocena) {
-        this.prosecna_ocena = prosecna_ocena;
+        this.prosecnaOcena = prosecna_ocena;
     }
 
     public  Kupac(KorisnikRegistracijaDto korisnikRegistracijaDto){

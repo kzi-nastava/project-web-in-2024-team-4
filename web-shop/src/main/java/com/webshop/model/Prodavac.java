@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("PRODAVAC")
 public class Prodavac extends Korisnik{
 
@@ -19,7 +20,7 @@ public class Prodavac extends Korisnik{
     @OneToMany(mappedBy = "korisnik_dao",fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Recenzija> dateRecenzije;
     @Column
-    private double prosecna_ocena;
+    private double prosecnaOcena;
 
     public List<Proizvod> getProizvodi_na_prodaju() {
         return proizvodiNaProdaju;
@@ -46,11 +47,11 @@ public class Prodavac extends Korisnik{
     }
 
     public double getProsecna_ocena() {
-        return prosecna_ocena;
+        return prosecnaOcena;
     }
 
     public void setProsecna_ocena(double prosecna_ocena) {
-        this.prosecna_ocena = prosecna_ocena;
+        this.prosecnaOcena = prosecna_ocena;
     }
     public  Prodavac(KorisnikRegistracijaDto korisnikRegistracijaDto){
         super(korisnikRegistracijaDto);

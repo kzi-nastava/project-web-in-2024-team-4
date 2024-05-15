@@ -34,9 +34,9 @@ public class Proizvod implements Serializable {
 
     //Prodavac
     @ManyToOne(fetch = FetchType.EAGER)
-    private Prodavac prodavac;
+    private Korisnik prodavac;
     @ManyToOne(fetch = FetchType.EAGER)
-    private Kupac kupac;
+    private Korisnik kupac;
     private boolean ostavljenaRecenzijaKupac;
     private boolean ostavljenaRecenzijaProdavac;
 
@@ -98,6 +98,22 @@ public class Proizvod implements Serializable {
 
     public void setTipProdaje(TipProdaje.tipProdaje tipProdaje) {
         this.tipProdaje = tipProdaje;
+    }
+
+    public void setProdavac(Prodavac prodavac) {
+        this.prodavac = prodavac;
+    }
+
+    public void setKupac(Kupac kupac) {
+        this.kupac = kupac;
+    }
+
+    public Korisnik getProdavac() {
+        return prodavac;
+    }
+
+    public Korisnik getKupac() {
+        return kupac;
     }
 }
 

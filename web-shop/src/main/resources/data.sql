@@ -14,10 +14,10 @@ INSERT INTO WORKING (project_id, employee_id) VALUES (1, 1);
 INSERT INTO WORKING (project_id, employee_id) VALUES (1, 2);
 INSERT INTO WORKING (project_id, employee_id) VALUES (2, 3);
 
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Kristijan','Mrkalj','kristijan','email@gmail.com','0670000000','12345678','01-01-1999','url_slike','opis_slike',1,false,4.66);
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Isidor','Ivanov','isidor','email1@gmail.com','0640000000','87654321','01-03-2004','url_slike1','opis_slike1',2,false,3.66);
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Stefan','Stefanovic','stefan','email2@gmail.com','0650000000','31351251','21-06-2003','url_slike2','opis_slike2',1,false,2.6);
-INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Nemanja','Radic','neca','email3@gmail.com','0650000000','313512521','21-06-2002','url_slike3','opis_slike3',2,false,4.32);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Kristijan','Mrkalj','kristijan','email@gmail.com','0670000000','12345678','01-01-1999','url_slike','opis_slike','KUPAC',false,4.66);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Isidor','Ivanov','isidor','email1@gmail.com','0640000000','87654321','01-03-2004','url_slike1','opis_slike1','PRODAVAC',false,3.66);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Stefan','Stefanovic','stefan','email2@gmail.com','0650000000','31351251','21-06-2003','url_slike2','opis_slike2','KUPAC',false,2.6);
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Nemanja','Radic','neca','email3@gmail.com','0650000000','313512521','21-06-2002','url_slike3','opis_slike3','KUPAC',false,4.32);
 
 
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.POJONode;
 import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.KorisnikRegistracijaDto;
+import com.webshop.dto.PrijavaKorisnikDto;
 import com.webshop.model.Korisnik;
 import com.webshop.model.Kupac;
 import com.webshop.model.Prodavac;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import java.util.Optional;
 
 @Service
 public class KorisnikService {
@@ -68,4 +70,19 @@ public class KorisnikService {
            return  new ResponseEntity<>("Postoji korisnik sa tim Korisnickim imenom ili emailom",HttpStatus.CONFLICT);
         }
     }
+
+    public Korisnik prijavaKorisnika(PrijavaKorisnikDto prijavaKorisnikDto)throws Exception{
+        Korisnik korisnik = korisnikRepository.findByKorisnickoIme(prijavaKorisnikDto.getKorisnickoIme());
+
+       if(korisnik==null)
+            throw new Exception("Ne Postoji Korisnik sa tim Korisnickim Imenom ili Lozinkom");
+
+
+        if (!korisnik.getLozinka().equals(prijavaKorisnikDto.getLozinka())) {
+            throw new Exception("Ne postoji korisnik sa tom  lozinkom.");
+        }
+
+        return korisnik;
+    }
+
 }
