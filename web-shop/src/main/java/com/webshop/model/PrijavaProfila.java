@@ -1,29 +1,28 @@
 package com.webshop.model;
 
-import java.util.Date;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
+
 @Entity
 public class PrijavaProfila implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    private String razlog_prijave;
-    @Temporal(TemporalType.DATE)
-    private LocalDate datum_podnosenja_prijave;
-    @ManyToOne
-    @JoinColumn(name = "podneoPrijavu_ID", referencedColumnName = "id")
-    private Korisnik korisnikPodnositelj;
+    private LocalDate datumPodnosenjaPrijave;
 
-    @ManyToOne
-    @JoinColumn(name = "odnosiSePrijava_ID", referencedColumnName = "id")
-    private Korisnik korisnikOdnosiSe;
-
-    public enum StatusPrijave {Podneta, Odbijena, Prihvaćena};
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private StatusPrijave statusPrijave;
-}
 
+    private String razlogPrijave;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Korisnik podnosilac;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Korisnik odnosiSe;
+}

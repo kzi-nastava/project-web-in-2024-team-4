@@ -1,26 +1,22 @@
 package com.webshop.model;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
-public class Ponuda implements Serializable{
+public class Ponuda implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Kupac kupac;
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Proizvod proizvod;
+    private Long id;
 
-    //LcalDateTime ponuda postavljena
-    LocalDateTime ponuda_postavljena;
-    private double cena;
+    private Double cena;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Kupac kupac;
 
 }
-
 

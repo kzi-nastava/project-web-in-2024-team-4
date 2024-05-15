@@ -1,91 +1,70 @@
 package com.webshop.dto;
 
-import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.model.Kategorija;
 import com.webshop.model.Proizvod;
+import com.webshop.model.TipProdaje;
 
-public class ProizvodDto {
-    private long id;
-    private String ime;
-    private String opis;
-    private Kategorija kategorija;
-    private double cena;
-    private String slika;
-    private TipProdaje.tipProdaje tipProdaje;
+import java.io.Serializable;
+import java.net.URL;
 
-    public ProizvodDto(){}
-    public ProizvodDto(long id,String ime,String opis,Kategorija kategorija,double cena,String slika,TipProdaje.tipProdaje tipProdaje){
-        this.id=id;
-        this.ime=ime;
-        this.opis=opis;
-        this.kategorija=kategorija;
-        this.cena=cena;
-        this.slika=slika;
-        this.tipProdaje=tipProdaje;
-    }
-    public ProizvodDto(Proizvod proizvod){
-        this.id=proizvod.getId();
-        this.ime=proizvod.getNaziv();
-        this.opis=proizvod.getOpis();
-        this.kategorija=proizvod.getKategorija();
-        this.cena=proizvod.getCena();
-        this.slika=proizvod.getSlika();
-        this.tipProdaje=proizvod.getTipProdaje();
+/**
+ * DTO for {@link com.webshop.model.Proizvod}
+ */
+public class ProizvodDto implements Serializable {
+
+    private final Long id;
+    private final String naziv;
+    private final String opis;
+    private final String profilnaURL;
+    private final Kategorija kategorija;
+    private final Double cena;
+    private final TipProdaje tipProdaje;
+
+    public ProizvodDto(Long id, String naziv, String opis, String profilnaURL, Kategorija kategorija, Double cena, TipProdaje tipProdaje) {
+        this.id = id;
+        this.naziv = naziv;
+        this.opis = opis;
+        this.profilnaURL = profilnaURL;
+        this.kategorija = kategorija;
+        this.cena = cena;
+        this.tipProdaje = tipProdaje;
     }
 
-    public long getId() {
+    public ProizvodDto(Proizvod proizvod) {
+        this.id = proizvod.getId();
+        this.naziv = proizvod.getNaziv();
+        this.opis = proizvod.getOpis();
+        this.profilnaURL = proizvod.getProfilnaURL();
+        this.kategorija = proizvod.getKategorija();
+        this.cena = proizvod.getCena();
+        this.tipProdaje = proizvod.getTipProdaje();
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getIme() {
-        return ime;
-    }
-
-    public void setIme(String ime) {
-        this.ime = ime;
+    public String getNaziv() {
+        return naziv;
     }
 
     public String getOpis() {
         return opis;
     }
 
-    public void setOpis(String opis) {
-        this.opis = opis;
+    public String getProfilnaURL() {
+        return profilnaURL;
     }
 
     public Kategorija getKategorija() {
         return kategorija;
     }
 
-    public void setKategorija(Kategorija kategorija) {
-        this.kategorija = kategorija;
-    }
-
-    public double getCena() {
+    public Double getCena() {
         return cena;
     }
 
-    public void setCena(double cena) {
-        this.cena = cena;
-    }
-
-    public String getSlika() {
-        return slika;
-    }
-
-    public void setSlika(String slika) {
-        this.slika = slika;
-    }
-
-    public TipProdaje.tipProdaje getTipProdaje() {
+    public TipProdaje getTipProdaje() {
         return tipProdaje;
-    }
-
-    public void setTipProdaje(TipProdaje.tipProdaje tipProdaje) {
-        this.tipProdaje = tipProdaje;
     }
 }

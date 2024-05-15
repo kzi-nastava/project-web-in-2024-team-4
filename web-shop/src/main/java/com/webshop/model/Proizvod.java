@@ -1,54 +1,53 @@
 package com.webshop.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.webshop.Enumeracije.TipProdaje;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.net.URL;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Proizvod implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String naziv;
+
     private String opis;
-    private String slika;//Putanja do slike
-    //Kategorija
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+
+    private String profilnaURL;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Kategorija kategorija;
-    private double cena;
+
+    private Double cena;
+
     @Enumerated(EnumType.STRING)
-    private TipProdaje.tipProdaje tipProdaje;
-    @Temporal(TemporalType.DATE)
-    private LocalDate datumObjavljivanja;
+    private TipProdaje tipProdaje;
 
-    //Ponuda
-    @OneToMany(mappedBy = "proizvod",fetch = FetchType.EAGER,orphanRemoval = true)
-    private List<Ponuda>ponude=new ArrayList<>();
+    private LocalDate datumObjave;
 
-    //Prodavac
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Prodavac prodavac;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Kupac kupac;
-    private boolean ostavljenaRecenzijaKupac;
-    private boolean ostavljenaRecenzijaProdavac;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Ponuda> ponuda = new HashSet<>();
+
+    private boolean recenzijaKupcaOstavljena;
+
+    private boolean recenzijaProdavcaOstavljena;
 
     private boolean prodat;
 
-        //Getters and Setters
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Prodavac prodavac;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,12 +67,12 @@ public class Proizvod implements Serializable {
         this.opis = opis;
     }
 
-    public String getSlika() {
-        return slika;
+    public String getProfilnaURL() {
+        return profilnaURL;
     }
 
-    public void setSlika(String slika) {
-        this.slika = slika;
+    public void setProfilnaURL(String profilnaURL) {
+        this.profilnaURL = profilnaURL;
     }
 
     public Kategorija getKategorija() {
@@ -84,20 +83,67 @@ public class Proizvod implements Serializable {
         this.kategorija = kategorija;
     }
 
-    public double getCena() {
+    public Double getCena() {
         return cena;
     }
 
-    public void setCena(double cena) {
+    public void setCena(Double cena) {
         this.cena = cena;
     }
 
-    public TipProdaje.tipProdaje getTipProdaje() {
+    public TipProdaje getTipProdaje() {
         return tipProdaje;
     }
 
-    public void setTipProdaje(TipProdaje.tipProdaje tipProdaje) {
+    public void setTipProdaje(TipProdaje tipProdaje) {
         this.tipProdaje = tipProdaje;
     }
-}
 
+    public LocalDate getDatumObjave() {
+        return datumObjave;
+    }
+
+    public void setDatumObjave(LocalDate datumObjave) {
+        this.datumObjave = datumObjave;
+    }
+
+    public Set<Ponuda> getPonuda() {
+        return ponuda;
+    }
+
+    public void setPonuda(Set<Ponuda> ponuda) {
+        this.ponuda = ponuda;
+    }
+
+    public boolean isRecenzijaKupcaOstavljena() {
+        return recenzijaKupcaOstavljena;
+    }
+
+    public void setRecenzijaKupcaOstavljena(boolean recenzijaKupcaOstavljena) {
+        this.recenzijaKupcaOstavljena = recenzijaKupcaOstavljena;
+    }
+
+    public boolean isRecenzijaProdavcaOstavljena() {
+        return recenzijaProdavcaOstavljena;
+    }
+
+    public void setRecenzijaProdavcaOstavljena(boolean recenzijaProdavcaOstavljena) {
+        this.recenzijaProdavcaOstavljena = recenzijaProdavcaOstavljena;
+    }
+
+    public boolean isProdat() {
+        return prodat;
+    }
+
+    public void setProdat(boolean prodat) {
+        this.prodat = prodat;
+    }
+
+    public Prodavac getProdavac() {
+        return prodavac;
+    }
+
+    public void setProdavac(Prodavac prodavac) {
+        this.prodavac = prodavac;
+    }
+}

@@ -1,37 +1,35 @@
 package com.webshop.controller;
 
 import com.webshop.dto.ProizvodDto;
+import com.webshop.model.Korisnik;
 import com.webshop.model.Proizvod;
-import com.webshop.repository.ProizvodRepository;
 import com.webshop.service.ProizvodService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/proizvodi")
 public class ProizvodController {
-    @Autowired
-    private ProizvodRepository proizvodRepository;
+
     @Autowired
     private ProizvodService proizvodService;
 
-    @GetMapping
-    public ResponseEntity<List<ProizvodDto>> getAllProducts(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue ="10")int size){
-        List<ProizvodDto> proizvod=proizvodService.getAllProducts(page,size);
-        return  ResponseEntity.ok(proizvod);
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<ProizvodDto>getOneProducts(@PathVariable long id){
-        ProizvodDto proizvodDto=proizvodService.getOneProducts(id);
-        return ResponseEntity.ok(proizvodDto);
-    }
+    @GetMapping("/all-products")
+    public ResponseEntity<List<ProizvodDto>> getProizvodi(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
+        Page<Proizvod> proizvodi = proizvodService.getProizvodList(page, size);
+        List<ProizvodDto> proizvodDtos = new ArrayList<>();
 
+        for (Proizvod proizvod : proizvodi) {
+            proizvodDtos.add(new ProizvodDto(proizvod));
+        }
+
+        return ResponseEntity.ok(proizvodDtos);
+    }
 }

@@ -1,28 +1,26 @@
 package com.webshop.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+
 @Entity
 public class Kategorija implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String naziv;
-    @OneToMany(mappedBy = "kategorija",cascade = CascadeType.ALL,orphanRemoval = true)
-    @JsonIgnore
-    private List<Proizvod> proizvodi=new ArrayList<>();
+    private Long id;
 
-    public long getId() {
+    private String naziv;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -32,13 +30,5 @@ public class Kategorija implements Serializable {
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
-    }
-
-    public List<Proizvod> getProizvodi() {
-        return proizvodi;
-    }
-
-    public void setProizvodi(ArrayList<Proizvod> proizvodi) {
-        this.proizvodi = proizvodi;
     }
 }

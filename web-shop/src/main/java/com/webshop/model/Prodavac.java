@@ -3,51 +3,30 @@ package com.webshop.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @DiscriminatorValue("Prodavac")
-public class Prodavac extends Korisnik{
+public class Prodavac extends Korisnik implements Serializable {
 
-    @OneToMany(mappedBy ="prodavac" ,fetch = FetchType.EAGER)
-    private List<Proizvod>proizvodiNaProdaju=new ArrayList<>();
-    @OneToMany(mappedBy = "korisnik_primio",fetch = FetchType.EAGER,orphanRemoval = true)
-    private List<Recenzija> dobijeneRecenzije;
-    @OneToMany(mappedBy = "korisnik_dao",fetch = FetchType.EAGER,orphanRemoval = true)
-    private List<Recenzija> dateRecenzije;
-    @Column
-    private double prosecna_ocena;
+    @OneToMany(mappedBy = "prodavac", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Proizvod> proizvodiNaProdaju = new HashSet<>();
 
-    public List<Proizvod> getProizvodi_na_prodaju() {
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Recenzija> recenzije = new HashSet<>();
+
+    private Double prosecnaOcena;
+
+    public Double getProsecnaOcena() {
+        return prosecnaOcena;
+    }
+
+    public Set<Proizvod> getProizvodiNaProdaju() {
         return proizvodiNaProdaju;
     }
 
-    public void setProizvodi_na_prodaju(List<Proizvod> proizvodi_na_prodaju) {
-        this.proizvodiNaProdaju = proizvodi_na_prodaju;
-    }
-
-    public List<Recenzija> getDobijeneRecenzije() {
-        return dobijeneRecenzije;
-    }
-
-    public void setDobijeneRecenzije(List<Recenzija> dobijeneRecenzije) {
-        this.dobijeneRecenzije = dobijeneRecenzije;
-    }
-
-    public List<Recenzija> getDateRecenzije() {
-        return dateRecenzije;
-    }
-
-    public void setDateRecenzije(List<Recenzija> dateRecenzije) {
-        this.dateRecenzije = dateRecenzije;
-    }
-
-    public double getProsecna_ocena() {
-        return prosecna_ocena;
-    }
-
-    public void setProsecna_ocena(double prosecna_ocena) {
-        this.prosecna_ocena = prosecna_ocena;
+    public Set<Recenzija> getRecenzije() {
+        return recenzije;
     }
 }
