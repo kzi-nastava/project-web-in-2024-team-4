@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.webshop.model.TipProdaje.FIKSNA_CENA;
 import static com.webshop.model.Uloga.KUPAC;
 import static com.webshop.model.Uloga.PRODAVAC;
 
@@ -69,6 +70,20 @@ public class KorisnikService {
             return ((Prodavac) korisnik).getRecenzije();
         }
         return new HashSet<>();
+    }
+    public void kupiProizvod(Proizvod p, Long id) {
+
+        if (p.getTipProdaje() == FIKSNA_CENA) {
+            Korisnik korisnik = this.korisnikRepository.findById(id).get();
+            Kupac kupac = (Kupac) korisnik;
+            kupac.kupiProizvod(p);
+            korisnikRepository.save(kupac);
+
+            Prodavac pr = p.getProdavac();
+            pr.prodajProizvod(p);
+            p.setProdat(true);
+        }
+
     }
 
 }
