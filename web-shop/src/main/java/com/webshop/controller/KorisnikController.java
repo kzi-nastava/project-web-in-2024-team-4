@@ -37,7 +37,6 @@ public class KorisnikController {
     @Autowired
     private PrijavaProfilaService prijavaProfilaService;
 
-    ///////
     private KupacProdavacDto kupacProdavacDto;
 
     //2.1
@@ -101,7 +100,6 @@ public class KorisnikController {
         }
     }
 
-    /////////////////////////////////
     //2.3
     @PostMapping("/kupovina-proizvoda/{productID}")
     public ResponseEntity<String> kupiProizvod(@PathVariable Long productID, HttpSession session) {
