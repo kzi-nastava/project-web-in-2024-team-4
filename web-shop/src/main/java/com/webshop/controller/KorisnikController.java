@@ -2,6 +2,7 @@ package com.webshop.controller;
 
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.KorisnikRegistracijaDto;
+import com.webshop.dto.KupacDto;
 import com.webshop.dto.PrijavaKorisnikDto;
 import com.webshop.dto.ProdavacDto;
 import com.webshop.model.Korisnik;
@@ -87,5 +88,42 @@ public class KorisnikController {
         korisnikService.saveKorisnik(prijavljeniKorisnik);
         return new ResponseEntity<>("Uspesno izmenjeni podaci",HttpStatus.OK);
     }
+
+    @PutMapping("/logged/kupacUpdate")
+    public ResponseEntity<?> updateKupac(@RequestBody KupacDto kupacDto, HttpSession session){
+        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        if(prijavljeniKorisnik==null){
+            return new ResponseEntity<>("Nema prijavljenog kupca",HttpStatus.BAD_REQUEST);
+        }
+        if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.KUPAC){
+            return  new ResponseEntity<>("Forbidden",HttpStatus.FORBIDDEN);
+        }
+        if (kupacDto.getKorisnickoIme()!=null || kupacDto.getEmailAdresa()!=null){
+            // Provera da li je stara lozinka tačna
+            if (!korisnikService.checkPassword(prijavljeniKorisnik.getId(), kupacDto.getLozinka())) {
+                return new ResponseEntity<>("Trenutna lozinka nije tačna.", HttpStatus.BAD_REQUEST);
+            }
+            if(kupacDto.getKorisnickoIme()!=null)
+                prijavljeniKorisnik.setKorisnickoIme(kupacDto.getKorisnickoIme());
+            if(kupacDto.getEmailAdresa()!=null)
+                prijavljeniKorisnik.setEmailAdresa(kupacDto.getEmailAdresa());
+        }
+        if(kupacDto.getIme()!=null)
+            prijavljeniKorisnik.setIme(kupacDto.getIme());
+        if(kupacDto.getPrezime()!=null)
+            prijavljeniKorisnik.setPrezime(kupacDto.getPrezime());
+        if(kupacDto.getBrojTelefona()!=null)
+            prijavljeniKorisnik.setBrojTelefona(kupacDto.getBrojTelefona());
+        if(kupacDto.getDatumRodjenja()!=null)
+            prijavljeniKorisnik.setDatumRodjenja(kupacDto.getDatumRodjenja());
+        if(kupacDto.getProfilnaSlika()!=null)
+            prijavljeniKorisnik.setProfilnaSlika(kupacDto.getProfilnaSlika());
+        if(kupacDto.getOpis()!=null)
+            prijavljeniKorisnik.setOpis(kupacDto.getOpis());
+        korisnikService.saveKorisnik(prijavljeniKorisnik);
+        return new ResponseEntity<>("Uspesno izmenjeni podaci",HttpStatus.OK);
+    }
+
+
 
 }

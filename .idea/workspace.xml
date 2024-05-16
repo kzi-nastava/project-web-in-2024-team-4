@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/ProdavacDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/KupacDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Korisnik.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Korisnik.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Prodavac.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Prodavac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/KorisnikRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/KorisnikRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +125,7 @@
       <workItem from="1715776654482" duration="85000" />
       <workItem from="1715776763128" duration="22040000" />
       <workItem from="1715855500934" duration="496000" />
-      <workItem from="1715864103786" duration="9327000" />
+      <workItem from="1715864103786" duration="11172000" />
     </task>
     <servers />
   </component>
