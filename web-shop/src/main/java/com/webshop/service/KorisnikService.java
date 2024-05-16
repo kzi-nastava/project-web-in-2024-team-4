@@ -5,6 +5,7 @@ import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.KorisnikRegistracijaDto;
 import com.webshop.dto.PrijavaKorisnikDto;
+import com.webshop.dto.ProdavacDto;
 import com.webshop.model.Korisnik;
 import com.webshop.model.Kupac;
 import com.webshop.model.Prodavac;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class KorisnikService {
@@ -31,6 +33,12 @@ public class KorisnikService {
     public void createProdavac(KorisnikRegistracijaDto korisnikRegistracijaDto){
         Prodavac prodavac= new Prodavac(korisnikRegistracijaDto);
         korisnikRepository.save(prodavac);
+    }
+    public void saveProdavac(Prodavac prodavac){
+        korisnikRepository.save(prodavac);
+    }
+    public void saveKorisnik(Korisnik korisnik){
+        korisnikRepository.save(korisnik);
     }
     public ResponseEntity<?> registracijaKorisnika(KorisnikRegistracijaDto korisnikRegistracijaDto){
         if(!korisnikRepository.existsByKorisnickoIme(korisnikRegistracijaDto.getKorisnickoIme())&&!korisnikRepository.existsByEmailAdresa(korisnikRegistracijaDto.getEmailAdresa())){
@@ -76,13 +84,21 @@ public class KorisnikService {
 
        if(korisnik==null)
             throw new Exception("Ne Postoji Korisnik sa tim Korisnickim Imenom ili Lozinkom");
-
-
         if (!korisnik.getLozinka().equals(prijavaKorisnikDto.getLozinka())) {
             throw new Exception("Ne postoji korisnik sa tom  lozinkom.");
         }
-
         return korisnik;
+    }
+
+    public boolean checkPassword(Long id,String unsenPassword) {
+        Korisnik korisnik = korisnikRepository.findById(id).orElse(null);
+        if(korisnik==null){
+            throw new IllegalArgumentException("Korisnik sa zadatim IDjem ne postoji");
+        }
+        if(unsenPassword==null){
+            throw  new RuntimeException("Ako menjate korisnicko ime ili mejl morate ponoviti sifru");
+        }
+        return unsenPassword.equals(korisnik.getLozinka());
     }
 
 }

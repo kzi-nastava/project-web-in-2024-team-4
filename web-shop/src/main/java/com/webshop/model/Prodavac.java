@@ -2,6 +2,7 @@ package com.webshop.model;
 
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.KorisnikRegistracijaDto;
+import com.webshop.dto.ProdavacDto;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -58,4 +59,7 @@ public class Prodavac extends Korisnik{
         setUloga(UlogaKorisnika.Uloga.PRODAVAC);
     }
     public Prodavac(){}
+    public Prodavac(ProdavacDto prodavacDto){
+        super(prodavacDto);
+    }
 }

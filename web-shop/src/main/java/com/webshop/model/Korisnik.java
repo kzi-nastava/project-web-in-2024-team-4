@@ -2,6 +2,7 @@ package com.webshop.model;
 
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.KorisnikRegistracijaDto;
+import com.webshop.dto.ProdavacDto;
 import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
@@ -16,10 +17,10 @@ public class Korisnik implements Serializable {
     private long id;
     private String ime;
     private String prezime;
-    @NaturalId
+
     @Column(unique = true)
     private String korisnickoIme;
-    @NaturalId
+
     @Column(unique = true)
     private String emailAdresa;
     private String brojTelefona;
@@ -154,6 +155,17 @@ public class Korisnik implements Serializable {
         this.lozinka = korisnikRegistracijaDto.getLozinka();
         this.emailAdresa = korisnikRegistracijaDto.getEmailAdresa();
         this.brojTelefona = korisnikRegistracijaDto.getBrojTelefona();
+    }
+    public Korisnik(ProdavacDto prodavacDto){
+        this.ime=prodavacDto.getIme();
+        this.prezime=prodavacDto.getPrezime();
+        this.korisnickoIme=prodavacDto.getKorisnickoIme();
+        this.emailAdresa=prodavacDto.getEmailAdresa();
+        this.brojTelefona=prodavacDto.getBrojTelefona();
+        this.lozinka=prodavacDto.getLozinka();
+        this.datumRodjenja=prodavacDto.getDatumRodjenja();
+        this.profilnaSlika=prodavacDto.getProfilnaSlika();
+        this.opis= prodavacDto.getOpis();
     }
 
 }
