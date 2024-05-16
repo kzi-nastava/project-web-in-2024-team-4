@@ -1,6 +1,7 @@
 package com.webshop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.KorisnikRegistracijaDto;
 import jakarta.persistence.*;
@@ -15,12 +16,16 @@ import java.util.Set;
 @DiscriminatorValue("KUPAC")
 public class Kupac extends Korisnik{
     @OneToMany(mappedBy ="kupac",fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnore
     private List<Proizvod> kupljeniProizvodi;
-    @OneToMany(mappedBy = "korisnik_primio",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "korisnikPrimio",fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnore
     private List<Recenzija> dobijeneRecenzije;
-    @OneToMany(mappedBy = "korisnik_dao",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "korisnikDao",fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnore
     private List<Recenzija> dateRecenzije;
     @OneToMany(mappedBy = "kupac",fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnore
     private List<Ponuda>ponude;
     @Column
     private double prosecnaOcena;

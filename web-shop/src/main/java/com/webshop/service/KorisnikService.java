@@ -3,13 +3,14 @@ package com.webshop.service;
 import com.fasterxml.jackson.databind.node.POJONode;
 import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.Enumeracije.UlogaKorisnika;
+import com.webshop.dto.InformacijeOProdavcuDto;
 import com.webshop.dto.KorisnikRegistracijaDto;
 import com.webshop.dto.PrijavaKorisnikDto;
 import com.webshop.dto.ProdavacDto;
-import com.webshop.model.Korisnik;
-import com.webshop.model.Kupac;
-import com.webshop.model.Prodavac;
+import com.webshop.model.*;
 import com.webshop.repository.KorisnikRepository;
+import com.webshop.repository.ProizvodRepository;
+import com.webshop.repository.RecenzijaRepository;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -24,7 +28,10 @@ import java.util.concurrent.ExecutionException;
 public class KorisnikService {
     @Autowired
     KorisnikRepository korisnikRepository;
-
+    @Autowired
+    ProizvodRepository proizvodRepository;
+    @Autowired
+    RecenzijaRepository recenzijaRepository;
     public void createKupac(KorisnikRegistracijaDto korisnikRegistracijaDto){
         Kupac kupac= new Kupac(korisnikRegistracijaDto);
         korisnikRepository.save(kupac);
@@ -99,6 +106,34 @@ public class KorisnikService {
             throw  new RuntimeException("Ako menjate korisnicko ime ili mejl morate ponoviti sifru");
         }
         return unsenPassword.equals(korisnik.getLozinka());
+    }
+
+    public List<Proizvod> getAllProizvodi(Long id){
+        List<Proizvod> proizvods=proizvodRepository.findProizvodByProdavacId(id);
+        return proizvods;
+    }
+    public List<Recenzija>getAllRecenzije(Long id){
+        List<Recenzija> recenzijas=recenzijaRepository.findRecenzijaByKorisnikPrimioId(id);
+        return  recenzijas;
+    }
+
+    public  double getProsecnaOcena(Long id){
+            Optional<Korisnik> korisnik= korisnikRepository.findById(id);
+            if(korisnik.isPresent()){
+                Korisnik korisnik1=korisnik.get();
+                if(korisnik1 instanceof Prodavac){
+                    Prodavac prodavac = (Prodavac) korisnik1;
+                    return prodavac.getProsecna_ocena();
+                } else if (korisnik1 instanceof Kupac) {
+                    Kupac kupac =(Kupac) korisnik1;
+                    return kupac.getProsecna_ocena();
+                }else
+                {
+                    throw new IllegalArgumentException("Objekat nije instnca Prodavca");
+                }
+            }else{
+                throw  new NoSuchElementException("Korisnik sa tim ID ne postoji");
+            }
     }
 
 }

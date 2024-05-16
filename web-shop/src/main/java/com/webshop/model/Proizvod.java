@@ -34,8 +34,10 @@ public class Proizvod implements Serializable {
 
     //Prodavac
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Korisnik prodavac;
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Korisnik kupac;
     private boolean ostavljenaRecenzijaKupac;
     private boolean ostavljenaRecenzijaProdavac;

@@ -1,6 +1,7 @@
 package com.webshop.model;
 
 import com.webshop.Enumeracije.UlogaKorisnika;
+import com.webshop.dto.InformacijeOProdavcuDto;
 import com.webshop.dto.KorisnikRegistracijaDto;
 import com.webshop.dto.ProdavacDto;
 import jakarta.persistence.*;
@@ -168,5 +169,15 @@ public class Korisnik implements Serializable {
         this.opis= prodavacDto.getOpis();
     }
 
+    public Korisnik(InformacijeOProdavcuDto informacijeOProdavcuDto){
+        this.ime=informacijeOProdavcuDto.getIme();
+        this.prezime=informacijeOProdavcuDto.getPrezime();
+        this.korisnickoIme= informacijeOProdavcuDto.getKorisnickoIme();
+        this.emailAdresa=informacijeOProdavcuDto.getEmailAdresa();
+        this.brojTelefona= informacijeOProdavcuDto.getBrojTelefona();
+        this.datumRodjenja=informacijeOProdavcuDto.getDatumRodjenja();
+        this.profilnaSlika= informacijeOProdavcuDto.getProfilnaSlika();
+        this.opis=informacijeOProdavcuDto.getOpis();
+    }
 }
 

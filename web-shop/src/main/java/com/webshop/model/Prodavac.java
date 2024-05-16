@@ -1,6 +1,8 @@
 package com.webshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.Enumeracije.UlogaKorisnika;
+import com.webshop.dto.InformacijeOProdavcuDto;
 import com.webshop.dto.KorisnikRegistracijaDto;
 import com.webshop.dto.ProdavacDto;
 import jakarta.persistence.*;
@@ -15,10 +17,13 @@ import java.util.List;
 public class Prodavac extends Korisnik{
 
     @OneToMany(mappedBy ="prodavac" ,fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Proizvod>proizvodiNaProdaju=new ArrayList<>();
-    @OneToMany(mappedBy = "korisnik_primio",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "korisnikPrimio",fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnore
     private List<Recenzija> dobijeneRecenzije;
-    @OneToMany(mappedBy = "korisnik_dao",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "korisnikDao",fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnore
     private List<Recenzija> dateRecenzije;
     @Column
     private double prosecnaOcena;
@@ -61,5 +66,14 @@ public class Prodavac extends Korisnik{
     public Prodavac(){}
     public Prodavac(ProdavacDto prodavacDto){
         super(prodavacDto);
+    }
+    public Prodavac(InformacijeOProdavcuDto informacijeOProdavcuDto){
+        super(informacijeOProdavcuDto);
+        this.proizvodiNaProdaju=informacijeOProdavcuDto.getProizvodiNaProdaju();
+        this.dobijeneRecenzije=informacijeOProdavcuDto.getDobijeneRecenzije();
+        this.prosecnaOcena=informacijeOProdavcuDto.getProsecnaOcena();
+    }
+    public Prodavac(Korisnik korisnik){
+        this.prosecnaOcena=getProsecna_ocena();
     }
 }

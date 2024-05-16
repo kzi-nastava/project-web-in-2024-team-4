@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/KupacDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/InformacijeOKupcuDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/InformacijeOProdavcuDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/OsnovneInformacijePregledProfilaDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Administrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/RecenzijaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/RezenzijaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Korisnik.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Korisnik.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kupac.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kupac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Prodavac.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Prodavac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Proizvod.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Proizvod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Recenzija.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Recenzija.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/KorisnikRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/KorisnikRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KategorijaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KategorijaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +32,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
         <option value="com.haulmont.jpb.NewClass" />
       </list>
     </option>
@@ -125,7 +140,7 @@
       <workItem from="1715776654482" duration="85000" />
       <workItem from="1715776763128" duration="22040000" />
       <workItem from="1715855500934" duration="496000" />
-      <workItem from="1715864103786" duration="11172000" />
+      <workItem from="1715864103786" duration="22762000" />
     </task>
     <servers />
   </component>

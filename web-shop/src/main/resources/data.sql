@@ -18,7 +18,7 @@ INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozi
 INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Isidor','Ivanov','isidor','email1@gmail.com','0640000000','87654321','01-03-2004','url_slike1','opis_slike1','PRODAVAC',false,3.66);
 INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Stefan','Stefanovic','stefan','email2@gmail.com','0650000000','31351251','21-06-2003','url_slike2','opis_slike2','KUPAC',false,2.6);
 INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Nemanja','Radic','neca','email3@gmail.com','0650000000','313512521','21-06-2002','url_slike3','opis_slike3','KUPAC',false,4.32);
-
+INSERT INTO KORISNIK (ime,prezime,korisnicko_ime,email_adresa,broj_telefona,lozinka,datum_rodjenja,profilna_slika,opis,uloga,blokiran,prosecna_ocena) VALUES ('Nemanja','Radic','Nemanjica','email5@gmail.com','0650000000','313512521','21-06-2002','url_slike3','opis_slike3','ADMINISTRATOR',false,4.32);
 
 
 INSERT INTO KATEGORIJA (naziv)values('Televizori');
@@ -55,10 +55,10 @@ INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (2000,1
 INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,3,3,current_timestamp);
 INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,2,1,current_timestamp);
 
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,4.68,'Neki komentar',1);
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,4.54,'Neki komentar1',2);
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',3);
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',1);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,4.68,'Neki komentar',2,1);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,4.54,'Neki komentar1',1,2);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',1,3);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',2,1);
 
 
 INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,1,3,'nisu placeni racuni','Podneta');
