@@ -2,21 +2,20 @@ package com.webshop.controller;
 
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.*;
-import com.webshop.model.Korisnik;
-import com.webshop.model.Prodavac;
-import com.webshop.model.Proizvod;
-import com.webshop.model.Recenzija;
+import com.webshop.model.*;
 import com.webshop.repository.KorisnikRepository;
 import com.webshop.repository.ProizvodRepository;
+import com.webshop.repository.RecenzijaRepository;
 import com.webshop.service.KorisnikService;
 import com.webshop.service.ProizvodService;
-import com.webshop.service.RezenzijaService;
+import com.webshop.service.RecenzijaService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +32,9 @@ public class KorisnikController {
     @Autowired
     ProizvodRepository proizvodRepository;
     @Autowired
-    RezenzijaService rezenzijaService;
+    RecenzijaService rezenzijaService;
+    @Autowired
+    RecenzijaRepository recenzijaRepository;
     @PostMapping("/registracija")
     public ResponseEntity<?> registracijaKorisnika(@RequestBody KorisnikRegistracijaDto korisnikRegistracijaDto){
        ResponseEntity<?> zahtev = korisnikService.registracijaKorisnika(korisnikRegistracijaDto);
@@ -214,5 +215,21 @@ public class KorisnikController {
             return new ResponseEntity<>("Neodgovarajuća uloga korisnika", HttpStatus.FORBIDDEN);
         }
     }
+/*
+    @PostMapping("/kupac/oceniProdavca/{prodavacId}")
+    public ResponseEntity<?> oceniProdavca(
+            @PathVariable Long prodavacId,
+            @RequestBody OcenjivanjeProdavcaDto ocenjivanjeProdavcaDto,
+            HttpSession session) {
+        Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
+        if (korisnikPrijavljen == null) {
+            return new ResponseEntity<>("Nema prijavljenog kupca", HttpStatus.BAD_REQUEST);
+        }
+        if (korisnikPrijavljen.getUloga() != UlogaKorisnika.Uloga.KUPAC) {
+            return new ResponseEntity<>("Korisnik nije kupac, nema pristupa", HttpStatus.FORBIDDEN);
+        }
 
+    }
+
+*/
 }
