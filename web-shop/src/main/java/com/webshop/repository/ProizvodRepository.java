@@ -27,5 +27,7 @@ public interface ProizvodRepository extends JpaRepository<Proizvod,Long> {
     @Query("SELECT p FROM Proizvod p WHERE (:minPrice IS NULL OR p.cena >= :minPrice) AND (:maxPrice IS NULL OR p.cena <= :maxPrice) AND (:saleType IS NULL OR p.tipProdaje = :saleType) AND (:category IS NULL OR p.kategorija.naziv = :category)")
     List<Proizvod> findProductsByFilters(@Param("minPrice") Double minPrice, @Param("maxPrice") Double maxPrice, @Param("saleType") TipProdaje.tipProdaje tipProdaje, @Param("category") String category);
     Proizvod getProizvodsById(Long id);
+
+    boolean existsProizvodByKupacAndProdavac(Korisnik kupac,Korisnik prodavac);
 }
 

@@ -215,12 +215,9 @@ public class KorisnikController {
             return new ResponseEntity<>("Neodgovarajuća uloga korisnika", HttpStatus.FORBIDDEN);
         }
     }
-/*
+
     @PostMapping("/kupac/oceniProdavca/{prodavacId}")
-    public ResponseEntity<?> oceniProdavca(
-            @PathVariable Long prodavacId,
-            @RequestBody OcenjivanjeProdavcaDto ocenjivanjeProdavcaDto,
-            HttpSession session) {
+    public ResponseEntity<?> oceniProdavca(@PathVariable Long prodavacId, @RequestBody OcenjivanjeProdavcaDto ocenjivanjeProdavcaDto, HttpSession session) {
         Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
         if (korisnikPrijavljen == null) {
             return new ResponseEntity<>("Nema prijavljenog kupca", HttpStatus.BAD_REQUEST);
@@ -229,7 +226,9 @@ public class KorisnikController {
             return new ResponseEntity<>("Korisnik nije kupac, nema pristupa", HttpStatus.FORBIDDEN);
         }
 
+        rezenzijaService.oceniProdavca(korisnikPrijavljen,korisnikRepository.findKorisnikById(prodavacId),ocenjivanjeProdavcaDto);
+        return  ResponseEntity.ok("Prodavac uspesno ocenjen");
+
     }
 
-*/
 }

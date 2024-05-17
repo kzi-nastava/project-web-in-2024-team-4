@@ -22,11 +22,10 @@ public class RecenzijaService {
     KorisnikRepository korisnikRepository;
     @Autowired
     ProizvodRepository proizvodRepository;
-/*
-    public void oceniProdavca(Kupac kupac, Prodavac prodavac, OcenjivanjeProdavcaDto ocenjivanjeProdavcaDto) {
-        // Provera da li je kupac kupio proizvod od datog prodavca
-       // boolean kupioProizvod = proizvodRepository.existsByKupacAndProdavac(kupac,prodavac);
-        boolean kupioProizvod=proizvodRepository.existsByKupacAndProdavac(kupac,prodavac);
+
+    public void oceniProdavca(Korisnik kupac, Korisnik prodavac, OcenjivanjeProdavcaDto ocenjivanjeProdavcaDto) {
+
+        boolean kupioProizvod=proizvodRepository.existsProizvodByKupacAndProdavac(kupac,prodavac);
         if (!kupioProizvod) {
             throw new IllegalArgumentException("Kupac nije kupio proizvod od datog prodavca.");
         }
@@ -38,11 +37,13 @@ public class RecenzijaService {
         }
 
         Recenzija recenzija = new Recenzija();
-        recenzija.setOcena(ocena);
+        recenzija.setOcena(ocenjivanjeProdavcaDto.getOcena());
         recenzija.setKomentar(ocenjivanjeProdavcaDto.getKomentar());
         recenzija.setKorisnikDao(kupac);
         recenzija.setKorisnikPrimio(prodavac);
+        recenzija.setDatumRecenzije(LocalDate.now());
+
         recenzijaRepository.save(recenzija);
     }
-   */
+
 }
