@@ -29,5 +29,6 @@ public interface ProizvodRepository extends JpaRepository<Proizvod,Long> {
     Proizvod getProizvodsById(Long id);
 
     boolean existsProizvodByKupacAndProdavac(Korisnik kupac,Korisnik prodavac);
+
 }
 

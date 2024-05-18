@@ -245,4 +245,32 @@ public class KorisnikController {
         return ResponseEntity.ok(prosecnaOcena);
     }
 
+
+    @GetMapping("/kupac/pregledRecenzija")
+    public  ResponseEntity<?> pregledRecenzijaKupac(HttpSession session){
+        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        if(prijavljeniKorisnik==null){
+            return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
+        }
+        if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.KUPAC){
+            return new ResponseEntity<>("Samo kupac ima pristup", HttpStatus.FORBIDDEN);
+        }
+        List<Recenzija> recenzijeDaoKupac=recenzijaRepository.findAllByKorisnikDao(prijavljeniKorisnik);
+        List<PregledRecenzijaDto>pregledRecenzijaDtos=new ArrayList<>();
+        for(Recenzija r:recenzijeDaoKupac){
+            PregledRecenzijaDto pregledRecenzijaDto=new PregledRecenzijaDto(r);
+            pregledRecenzijaDtos.add(pregledRecenzijaDto);
+        }
+        for(Recenzija r:recenzijeDaoKupac){
+            List<Recenzija> recenzijeAkojeProdavacDaoKupcu=recenzijaRepository.findAllByKorisnikDao(r.getKorisnikPrimio());
+            for(Recenzija r1: recenzijeAkojeProdavacDaoKupcu){
+                if(r1.getKorisnikPrimio().getId()==prijavljeniKorisnik.getId()) {
+                    PregledRecenzijaDto pregledRecenzijaDto= new PregledRecenzijaDto(r1);
+                    pregledRecenzijaDtos.add(pregledRecenzijaDto);
+                }
+            }
+
+        }
+        return ResponseEntity.ok(pregledRecenzijaDtos);
+    }
 }

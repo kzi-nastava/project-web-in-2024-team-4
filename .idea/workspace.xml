@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/PregledRecenzijaDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/RecenzijaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/RecenzijaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="com.haulmont.jpb.NewClass" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="com.haulmont.jpb.NewClass" />
       </list>
     </option>
   </component>
@@ -127,7 +130,7 @@
       <workItem from="1715855500934" duration="496000" />
       <workItem from="1715864103786" duration="23012000" />
       <workItem from="1715957847028" duration="11704000" />
-      <workItem from="1716030968473" duration="1062000" />
+      <workItem from="1716030968473" duration="5947000" />
     </task>
     <servers />
   </component>

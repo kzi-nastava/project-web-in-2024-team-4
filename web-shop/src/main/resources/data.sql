@@ -26,18 +26,18 @@ INSERT INTO KATEGORIJA (naziv)values('Telefoni');
 INSERT INTO KATEGORIJA (naziv)values('Tableti');
 INSERT INTO KATEGORIJA (naziv)values('Mali kucni aparatici');
 
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('LG G500','televizor u boji','slika1',5000,'FiksnaCena',false,false,true,1,1,current_timestamp,1);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Iphone 11','telefon','slika2',2000,'Aukcija',true,false,true,2,2,current_timestamp,1);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,3,current_timestamp,4);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('LG G500','televizor u boji','slika1',5000,'FiksnaCena',true,false,true,1,1,current_timestamp,1);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Iphone 11','telefon','slika2',2000,'Aukcija',true,true,true,2,2,current_timestamp,1);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,true,true,2,3,current_timestamp,4);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,true,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,true,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,true,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,false,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,true,true,2,1,current_timestamp,2);
 INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'Aukcija',false,false,true,2,1,current_timestamp,2);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
-INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,true,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,true,true,2,1,current_timestamp,2);
+INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',true,true,true,2,1,current_timestamp,2);
 INSERT INTO PROIZVOD  (naziv,opis,slika,cena,tip_prodaje,ostavljena_recenzija_kupac,ostavljena_recenzija_prodavac,prodat,kategorija_id,prodavac_id,datum_objavljivanja,kupac_id) values ('Samsung S23','telefon','slika3',3000,'FiksnaCena',false,false,true,4,1,current_timestamp,2);
 
 /*
@@ -58,7 +58,9 @@ INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,2
 INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,4.68,'Neki komentar',2,1);
 INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,4.54,'Neki komentar1',1,2);
 INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',1,3);
-INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,3.68,'Neki komentar2',2,1);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,2.68,'Neki komentar3',2,1);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,2.68,'Neki komentar4',3,2);
+INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,4.55,'Neki komentar5',3,1);
 
 
 INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,1,3,'nisu placeni racuni','Podneta');
