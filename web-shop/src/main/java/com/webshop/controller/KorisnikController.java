@@ -230,5 +230,19 @@ public class KorisnikController {
         return  ResponseEntity.ok("Prodavac uspesno ocenjen");
 
     }
+    @GetMapping("/prosecnaOcenaProdavca/{id}")
+    public ResponseEntity<?> getProsecnaOcenaProdavca(@PathVariable Long id){
+        Korisnik korisnik=korisnikRepository.findKorisnikById(id);
+        if(korisnik.getUloga()!= UlogaKorisnika.Uloga.PRODAVAC){
+            return ResponseEntity.badRequest().body("Uneti ID nije ID prodavca");
+        }
+        List<Recenzija> recenzijas=recenzijaRepository.findAllByKorisnikPrimio(korisnik);
+        double prosecnaOcena=0;
+        for(Recenzija r:recenzijas){
+            prosecnaOcena+=r.getOcena();
+        }
+        prosecnaOcena=prosecnaOcena/recenzijas.size();
+        return ResponseEntity.ok(prosecnaOcena);
+    }
 
 }
