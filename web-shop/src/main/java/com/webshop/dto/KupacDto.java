@@ -1,14 +1,12 @@
 package com.webshop.dto;
 
-import com.webshop.model.Korisnik;
-import com.webshop.model.Uloga;
-
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
- * DTO for {@link com.webshop.model.Korisnik}
+ * DTO for {@link com.webshop.model.Kupac}
  */
-public class KorisnikDto implements Serializable {
+public class KupacDto implements Serializable {
 
     private final String ime;
     private final String prezime;
@@ -16,26 +14,20 @@ public class KorisnikDto implements Serializable {
     private final String password;
     private final String mail;
     private final String brojTelefona;
-    private final Uloga uloga;
+    private final LocalDate datumRodjenja;
+    private final String profilnaURL;
+    private final String opis;
 
-    public KorisnikDto(String ime, String prezime, String username, String password, String mail, String brojTelefona, Uloga uloga) {
+    public KupacDto(String ime, String prezime, String username, String password, String mail, String brojTelefona, LocalDate datumRodjenja, String profilnaURL, String opis) {
         this.ime = ime;
         this.prezime = prezime;
         this.username = username;
         this.password = password;
         this.mail = mail;
         this.brojTelefona = brojTelefona;
-        this.uloga = uloga;
-    }
-
-    public KorisnikDto(Korisnik korisnik) {
-        this.ime = korisnik.getIme();
-        this.prezime = korisnik.getPrezime();
-        this.username = korisnik.getUsername();
-        this.password = korisnik.getPassword();
-        this.mail = korisnik.getMail();
-        this.brojTelefona = korisnik.getBrojTelefona();
-        this.uloga = korisnik.getUloga();
+        this.datumRodjenja = datumRodjenja;
+        this.profilnaURL = profilnaURL;
+        this.opis = opis;
     }
 
     public String getIme() {
@@ -62,7 +54,15 @@ public class KorisnikDto implements Serializable {
         return brojTelefona;
     }
 
-    public Uloga getUloga() {
-        return uloga;
+    public LocalDate getDatumRodjenja() {
+        return datumRodjenja;
+    }
+
+    public String getProfilnaURL() {
+        return profilnaURL;
+    }
+
+    public String getOpis() {
+        return opis;
     }
 }
