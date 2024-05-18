@@ -34,7 +34,7 @@ public class Kupac extends Korisnik{
         return kupljeniProizvodi;
     }
 
-    public void setKupljeni_proizvodi(ArrayList<Proizvod> kupljeni_proizvodi) {
+    public void setKupljeni_proizvodi(List<Proizvod> kupljeni_proizvodi) {
         this.kupljeniProizvodi = kupljeni_proizvodi;
     }
 

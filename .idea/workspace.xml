@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/Enumeracije/StatusPrijave.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/PrijavaProfilaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/PodnosenjePrijaveDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/PrijavaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/PrijavaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/NovaPonudaDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/PonudaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/PonudaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/PrijavaProfila.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/PrijavaProfila.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/ProizvodController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/ProizvodController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kupac.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Kupac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Ponuda.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Ponuda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Proizvod.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Proizvod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="com.haulmont.jpb.NewClass" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="com.haulmont.jpb.NewClass" />
       </list>
     </option>
   </component>
@@ -140,7 +143,7 @@
       <workItem from="1715855500934" duration="496000" />
       <workItem from="1715864103786" duration="23012000" />
       <workItem from="1715957847028" duration="11704000" />
-      <workItem from="1716030968473" duration="10356000" />
+      <workItem from="1716030968473" duration="23264000" />
     </task>
     <servers />
   </component>

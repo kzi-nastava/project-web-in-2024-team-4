@@ -1,23 +1,29 @@
 package com.webshop.controller;
 
 import com.webshop.Enumeracije.TipProdaje;
+import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.ProizvodDto;
-import com.webshop.model.Kategorija;
-import com.webshop.model.Proizvod;
+import com.webshop.model.*;
 import com.webshop.repository.KategorijaRepository;
+import com.webshop.repository.KorisnikRepository;
+import com.webshop.repository.PonudaRepository;
 import com.webshop.repository.ProizvodRepository;
 import com.webshop.service.KategorijaService;
 import com.webshop.service.ProizvodService;
-import jakarta.annotation.Nullable;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +38,10 @@ public class ProizvodController {
     private KategorijaService kategorijaService;
     @Autowired
     private KategorijaRepository kategorijaRepository;
+    @Autowired
+    private KorisnikRepository korisnikRepository;
+    @Autowired
+    private PonudaRepository ponudaRepository;
     @GetMapping("/lista-proizvoda")
     public ResponseEntity<List<ProizvodDto>> getAllProducts(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue ="10")int size){
         List<ProizvodDto> proizvod=proizvodService.getAllProducts(page,size);
@@ -60,6 +70,49 @@ public class ProizvodController {
     public ResponseEntity<ProizvodDto>getOneProducts(@PathVariable long id){
         ProizvodDto proizvodDto=proizvodService.getOneProducts(id);
         return ResponseEntity.ok(proizvodDto);
+    }
+    @GetMapping("/kupiproizvode")
+    public ResponseEntity<?>kupiProizvod(HttpSession session, @RequestParam long id,@RequestParam @Nullable double novaCena){
+        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+          if(prijavljeniKorisnik==null){
+                return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
+        }
+        if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.KUPAC){
+            return new ResponseEntity<>("Samo kupac ima pristup", HttpStatus.FORBIDDEN);
+        }
+        Proizvod proizvod = proizvodRepository.getProizvodsById(id);
+        Korisnik korisnik =proizvod.getProdavac();
+
+            Kupac kupac = (Kupac) prijavljeniKorisnik;
+            List<Proizvod> kupljeniProizvodi = kupac.getKupljeni_proizvodi();
+            Prodavac prodavac = (Prodavac) korisnik;
+            List<Proizvod> proizvodiNaProdaju = prodavac.getProizvodi_na_prodaju();
+            if (proizvod.getTipProdaje() == TipProdaje.tipProdaje.FiksnaCena) {
+                if (!proizvod.isProdat()) {
+                    kupljeniProizvodi.add(proizvod);
+                    proizvod.setProdat(true);
+                    proizvodiNaProdaju.remove(proizvod);
+                }
+            } else if (proizvod.getTipProdaje() == TipProdaje.tipProdaje.Aukcija) {
+                    if(!proizvod.isProdat()){
+                        Ponuda ponuda=ponudaRepository.findTopByProizvodOrderByPonudaPostavljenaDesc(proizvod);
+                        if(ponuda.getCena()<novaCena){
+                            //ponuda.setCena(novaCena);
+                            Ponuda novaPonuda=new Ponuda();
+                            novaPonuda.setCena(novaCena);
+                            novaPonuda.setProizvod(proizvod);
+                            novaPonuda.setKupac(kupac);
+                            novaPonuda.setPonuda_postavljena(LocalDateTime.now());
+                            ponudaRepository.save(novaPonuda);
+                            return ResponseEntity.ok(novaPonuda);
+                        }else {
+                            return ResponseEntity.badRequest().body("Nova ponuda mora biti veća od trenutne ponude.");
+                        }
+                    }
+            } else {
+                return new ResponseEntity<>("Ne postojeci Tip Prodaje", HttpStatus.BAD_REQUEST);
+            }
+        return ResponseEntity.ok(kupac);
     }
 
 }

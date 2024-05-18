@@ -117,5 +117,13 @@ public class Proizvod implements Serializable {
     public Korisnik getKupac() {
         return kupac;
     }
+
+    public boolean isProdat() {
+        return prodat;
+    }
+
+    public void setProdat(boolean prodat) {
+        this.prodat = prodat;
+    }
 }
 

@@ -4,6 +4,7 @@ import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.dto.ProizvodDto;
 import com.webshop.model.Kategorija;
 import com.webshop.model.Korisnik;
+import com.webshop.model.Kupac;
 import com.webshop.model.Proizvod;
 import jakarta.annotation.Nullable;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,9 @@ public interface ProizvodRepository extends JpaRepository<Proizvod,Long> {
     Proizvod getProizvodsById(Long id);
 
     boolean existsProizvodByKupacAndProdavac(Korisnik kupac,Korisnik prodavac);
+
+   // List<Proizvod>findAllByKupac(Kupac kupac);
+    List<Proizvod>findAllByProdavac(Korisnik prodavac);
 
 }
 
