@@ -202,4 +202,5 @@ public class KorisnikController {
             return new ResponseEntity<>("Nemate pravo za prijavu", HttpStatus.FORBIDDEN);
         }
     }
+
 }
