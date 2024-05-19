@@ -3,10 +3,8 @@ package com.webshop.controller;
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.*;
 import com.webshop.model.*;
-import com.webshop.repository.KategorijaRepository;
-import com.webshop.repository.KorisnikRepository;
-import com.webshop.repository.ProizvodRepository;
-import com.webshop.repository.RecenzijaRepository;
+import com.webshop.repository.*;
+import com.webshop.service.EmailService;
 import com.webshop.service.KorisnikService;
 import com.webshop.service.ProizvodService;
 import com.webshop.service.RecenzijaService;
@@ -39,6 +37,10 @@ public class KorisnikController {
     RecenzijaRepository recenzijaRepository;
     @Autowired
     KategorijaRepository kategorijaRepository;
+    @Autowired
+    PonudaRepository ponudaRepository;
+    @Autowired
+    EmailService emailService;
     @PostMapping("/registracija")
     public ResponseEntity<?> registracijaKorisnika(@RequestBody KorisnikRegistracijaDto korisnikRegistracijaDto){
        ResponseEntity<?> zahtev = korisnikService.registracijaKorisnika(korisnikRegistracijaDto);
@@ -391,5 +393,45 @@ public class KorisnikController {
 
         proizvodRepository.save(proizvod);
         return ResponseEntity.ok("Prodaja uspeno postavljena");
+    }
+
+    //3.4 Funkcionalnost
+    @GetMapping("/prodavac/krajaukcije/{id}")
+    public ResponseEntity<?> krajAukcije(HttpSession session,@PathVariable Long id){
+        Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
+        if (korisnikPrijavljen == null) {
+            return new ResponseEntity<>("Nema prijavljenog prodavca", HttpStatus.BAD_REQUEST);
+        }
+        if(korisnikPrijavljen.getUloga()!= UlogaKorisnika.Uloga.PRODAVAC) {
+            return new ResponseEntity<>("Niste ulogovani kako PRODAVAC pristup odbijem",HttpStatus.FORBIDDEN);
+        }
+
+        Proizvod proizvod=proizvodRepository.getProizvodsById(id);
+        List<Ponuda> ponudas= ponudaRepository.findAllByProizvod(proizvod);
+        if(proizvod.isProdat() || ponudas.isEmpty()){
+            return new ResponseEntity<>("Ne mozete proglasiti kraj aukcije jer aukcija nije aktivna ili aukcija nije imala niti jednu ponudu",HttpStatus.BAD_REQUEST);
+        }
+
+        proizvod.setProdat(true);
+        proizvodRepository.save(proizvod);
+
+        Ponuda ponuda= ponudaRepository.findTopByProizvodOrderByPonudaPostavljenaDesc(proizvod);
+
+        Kupac kupac=ponuda.getKupac();
+        List<Proizvod> proizvods=kupac.getKupljeni_proizvodi();
+        proizvods.add(proizvod);
+
+        Prodavac prodavac=(Prodavac) korisnikPrijavljen;
+        List<Proizvod>proizvodiNaProdaju=prodavac.getProizvodi_na_prodaju();
+        proizvodiNaProdaju.remove(proizvod);
+        String prodavacEmail=prodavac.getEmailAdresa();
+        emailService.sendEmail(prodavacEmail,"Zavrsena Aukcija","Proizvod je prodat "+kupac.getIme()+" po ceni od "+ponuda.getCena());
+        String kupacEmail;
+        for(Ponuda p:ponudas){
+            kupacEmail=p.getKupac().getEmailAdresa();
+            emailService.sendEmail(kupacEmail,"Zavrsetak Aukcije","Hvala na učešću");
+        }
+
+        return ResponseEntity.ok("Aukcija je uspeno zavrsena");
     }
 }

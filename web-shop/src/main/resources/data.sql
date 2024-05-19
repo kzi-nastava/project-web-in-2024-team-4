@@ -58,7 +58,7 @@ INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (1000,1
 INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (2000,1,1,current_timestamp);
 INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,3,3,current_timestamp);
 INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,2,1,current_timestamp);
-INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,4,4,current_timestamp);
+INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (3000,7,6,current_timestamp);
 /*INSERT INTO PONUDA (cena,kupac_id,proizvod_id,ponuda_postavljena) values (1000,4,6,current_timestamp);*/
 
 
