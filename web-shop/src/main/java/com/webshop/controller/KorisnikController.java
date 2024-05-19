@@ -273,4 +273,84 @@ public class KorisnikController {
         }
         return ResponseEntity.ok(pregledRecenzijaDtos);
     }
+
+    //3.2
+    @GetMapping("/prodavac/pregled")
+    public ResponseEntity<?> pregledKorisnikaProdavac(HttpSession session) {
+        Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
+        if (korisnikPrijavljen == null) {
+            return new ResponseEntity<>("Nema prijavljenog prodavca", HttpStatus.BAD_REQUEST);
+        }
+        if (korisnikPrijavljen.getUloga() == UlogaKorisnika.Uloga.PRODAVAC) {
+            List<Korisnik> korisnik = korisnikRepository.findAll();
+            List<OsnovneInformacijePregledProfilaDto> osnovneInformacijePregledProfilaDtos = new ArrayList<>();
+            for (Korisnik k : korisnik) {
+                if (k.getUloga() == UlogaKorisnika.Uloga.KUPAC || k.getUloga() == UlogaKorisnika.Uloga.PRODAVAC) {
+                    OsnovneInformacijePregledProfilaDto osnovneInformacijePregledProfilaDto=new OsnovneInformacijePregledProfilaDto(k);
+                    osnovneInformacijePregledProfilaDtos.add(osnovneInformacijePregledProfilaDto);
+                }
+            }
+            return  ResponseEntity.ok(osnovneInformacijePregledProfilaDtos);
+        }else{
+            return new ResponseEntity<>("Zabranjen pristup za korisnike koji nisu PRODAVAC", HttpStatus.FORBIDDEN);
+        }
+    }
+    @GetMapping("/prodavac/pregled/{id}")
+    public ResponseEntity<?> pregledIzabranogProfilaProdavac(@PathVariable Long id,HttpSession session){
+        Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
+        if (korisnikPrijavljen == null) {
+            return new ResponseEntity<>("Nema prijavljenog PRODAVCA", HttpStatus.BAD_REQUEST);
+        }
+        Optional<Korisnik> trazeniKorisnik = korisnikRepository.findById(id);
+        if (!trazeniKorisnik.isPresent()) {
+            return new ResponseEntity<>("Korisnik nije pronađen", HttpStatus.NOT_FOUND);
+        }
+
+        Korisnik korisnikZaPregled = trazeniKorisnik.get();
+
+        if (korisnikZaPregled.getUloga() == UlogaKorisnika.Uloga.PRODAVAC) {
+            // Pronalazak proizvoda prodavatelja
+
+            List<Proizvod> products = proizvodRepository.findProizvodByProdavacId(korisnikZaPregled.getId());
+            List<ProizvodDto>proizvodDtos=new ArrayList<>();
+            for(Proizvod p:products){
+                ProizvodDto proizvodDto= new ProizvodDto(p);
+                proizvodDtos.add(proizvodDto);
+            }
+            List<Proizvod> proizvods=korisnikService.getAllProizvodi(id);
+            List<Recenzija>recenzijas=korisnikService.getAllRecenzije(id);
+            double prosecnaOcena= korisnikService.getProsecnaOcena(id);
+            InformacijeOProdavcuDto dto = new InformacijeOProdavcuDto(
+                    korisnikZaPregled.getIme(),
+                    korisnikZaPregled.getPrezime(),
+                    korisnikZaPregled.getKorisnickoIme(),
+                    korisnikZaPregled.getEmailAdresa(),
+                    korisnikZaPregled.getBrojTelefona(),
+                    korisnikZaPregled.getDatumRodjenja(),
+                    korisnikZaPregled.getProfilnaSlika(),
+                    korisnikZaPregled.getOpis(),
+                    proizvods,
+                    recenzijas,
+                    prosecnaOcena
+            );
+
+            return ResponseEntity.ok(dto);
+        } else if (korisnikZaPregled.getUloga()== UlogaKorisnika.Uloga.KUPAC) {
+            List<Proizvod> proizvods=korisnikService.getAllProizvodi(id);
+            List<Recenzija>recenzijas=korisnikService.getAllRecenzije(id);
+            double prosecnaOcena= korisnikService.getProsecnaOcena(id);
+            InformacijeOKupcuDto dto=new InformacijeOKupcuDto(korisnikZaPregled.getIme(),
+                    korisnikZaPregled.getPrezime(),
+                    korisnikZaPregled.getKorisnickoIme(),
+                    korisnikZaPregled.getEmailAdresa(),
+                    korisnikZaPregled.getBrojTelefona(),
+                    korisnikZaPregled.getDatumRodjenja(),
+                    korisnikZaPregled.getProfilnaSlika(),
+                    korisnikZaPregled.getOpis(),proizvods,recenzijas,prosecnaOcena);
+            return ResponseEntity.ok(dto);
+
+        } else {
+            return new ResponseEntity<>("Neodgovarajuća uloga korisnika", HttpStatus.FORBIDDEN);
+        }
+    }
 }
