@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/OcenjivanjeKupcaDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/RecenzijaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/RecenzijaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +138,7 @@
       <workItem from="1716030968473" duration="23381000" />
       <workItem from="1716111690987" duration="17852000" />
       <workItem from="1716135869696" duration="2872000" />
-      <workItem from="1716148422235" duration="2185000" />
+      <workItem from="1716148422235" duration="2841000" />
     </task>
     <servers />
   </component>
