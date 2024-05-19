@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface KategorijaRepository extends JpaRepository<Kategorija,Long> {
 
     Kategorija findKategorijaByNaziv(String naziv);
+
+    boolean existsKategorijaByNaziv(String naziv);
 }

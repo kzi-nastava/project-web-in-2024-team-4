@@ -46,6 +46,43 @@ public class Proizvod implements Serializable {
 
         //Getters and Setters
 
+
+    public LocalDate getDatumObjavljivanja() {
+        return datumObjavljivanja;
+    }
+
+    public List<Ponuda> getPonude() {
+        return ponude;
+    }
+
+    public void setPonude(List<Ponuda> ponude) {
+        this.ponude = ponude;
+    }
+
+    public void setProdavac(Korisnik prodavac) {
+        this.prodavac = prodavac;
+    }
+
+    public void setKupac(Korisnik kupac) {
+        this.kupac = kupac;
+    }
+
+    public boolean isOstavljenaRecenzijaKupac() {
+        return ostavljenaRecenzijaKupac;
+    }
+
+    public void setOstavljenaRecenzijaKupac(boolean ostavljenaRecenzijaKupac) {
+        this.ostavljenaRecenzijaKupac = ostavljenaRecenzijaKupac;
+    }
+
+    public boolean isOstavljenaRecenzijaProdavac() {
+        return ostavljenaRecenzijaProdavac;
+    }
+
+    public void setOstavljenaRecenzijaProdavac(boolean ostavljenaRecenzijaProdavac) {
+        this.ostavljenaRecenzijaProdavac = ostavljenaRecenzijaProdavac;
+    }
+
     public long getId() {
         return id;
     }

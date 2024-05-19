@@ -1,5 +1,6 @@
 package com.webshop.controller;
 
+import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.*;
 import com.webshop.model.*;
@@ -8,6 +9,7 @@ import com.webshop.service.EmailService;
 import com.webshop.service.KorisnikService;
 import com.webshop.service.ProizvodService;
 import com.webshop.service.RecenzijaService;
+import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -434,4 +436,53 @@ public class KorisnikController {
 
         return ResponseEntity.ok("Aukcija je uspeno zavrsena");
     }
+
+    //3.5 Ažuriranje informacija o proizvodu
+    @PutMapping("/prodavac/azuriranjeProizvoda/{id}")
+    public  ResponseEntity<?> azuriranjeInformacijaOPRoizvodu(@RequestBody@Nullable ProizvodDto proizvodDto, @PathVariable Long id, HttpSession session){
+        Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
+        if (korisnikPrijavljen == null) {
+            return new ResponseEntity<>("Nema prijavljenog prodavca", HttpStatus.BAD_REQUEST);
+        }
+        if(korisnikPrijavljen.getUloga()!= UlogaKorisnika.Uloga.PRODAVAC) {
+            return new ResponseEntity<>("Niste ulogovani kako PRODAVAC pristup odbijem",HttpStatus.FORBIDDEN);
+        }
+        Proizvod proizvod = proizvodRepository.getProizvodsById(id);
+        List<Ponuda> ponudeZaProizvod=ponudaRepository.findAllByProizvod(proizvod);
+        Prodavac prodavac=(Prodavac) korisnikPrijavljen;
+        if(proizvod.getProdavac().getId()!=prodavac.getId()){
+            return new ResponseEntity<>("Ovaj prodavac ne prodaje trazeni proizvod",HttpStatus.NOT_FOUND);
+        }
+        if(proizvod.getTipProdaje()== TipProdaje.tipProdaje.Aukcija){
+            if(!ponudeZaProizvod.isEmpty()){
+                return new ResponseEntity<>("Nije moguce izmeniti informacije o proizvodu jer za taj proizvod postoje ponude",HttpStatus.BAD_REQUEST);
+            }
+        }
+        if(proizvodDto.getIme()!=null)
+            proizvod.setNaziv(proizvodDto.getIme());
+        if(proizvodDto.getOpis()!=null)
+            proizvod.setOpis(proizvodDto.getOpis());
+        if(proizvodDto.getKategorija()!=null) {
+            boolean kategorija=kategorijaRepository.existsKategorijaByNaziv(proizvodDto.getKategorija().getNaziv());
+            if(!kategorija){
+                Kategorija novaKategorija = new Kategorija();
+                novaKategorija.setNaziv(proizvodDto.getKategorija().getNaziv());
+                proizvod.setKategorija(novaKategorija);
+                kategorijaRepository.save(novaKategorija);
+            }else {
+                Kategorija kategorija1=kategorijaRepository.findKategorijaByNaziv(proizvodDto.getKategorija().getNaziv());
+                proizvod.setKategorija(kategorija1);
+                }
+            }
+
+        proizvod.setCena(proizvodDto.getCena());
+        if(proizvodDto.getSlika()!=null)
+            proizvod.setSlika(proizvodDto.getSlika());
+        if(proizvodDto.getTipProdaje()!=null)
+            proizvod.setTipProdaje(proizvodDto.getTipProdaje());
+
+        proizvodRepository.save(proizvod);
+        return new ResponseEntity<>("Proizvod je uspeno updatovan",HttpStatus.OK);
+    }
+
 }
