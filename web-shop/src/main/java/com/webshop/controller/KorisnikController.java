@@ -3,6 +3,7 @@ package com.webshop.controller;
 import com.webshop.Enumeracije.UlogaKorisnika;
 import com.webshop.dto.*;
 import com.webshop.model.*;
+import com.webshop.repository.KategorijaRepository;
 import com.webshop.repository.KorisnikRepository;
 import com.webshop.repository.ProizvodRepository;
 import com.webshop.repository.RecenzijaRepository;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +37,8 @@ public class KorisnikController {
     RecenzijaService rezenzijaService;
     @Autowired
     RecenzijaRepository recenzijaRepository;
+    @Autowired
+    KategorijaRepository kategorijaRepository;
     @PostMapping("/registracija")
     public ResponseEntity<?> registracijaKorisnika(@RequestBody KorisnikRegistracijaDto korisnikRegistracijaDto){
        ResponseEntity<?> zahtev = korisnikService.registracijaKorisnika(korisnikRegistracijaDto);
@@ -352,5 +356,40 @@ public class KorisnikController {
         } else {
             return new ResponseEntity<>("Neodgovarajuća uloga korisnika", HttpStatus.FORBIDDEN);
         }
+    }
+
+    //3.3 Funkcionalnost
+    @PostMapping("/prodavac/postaviProdaju")
+    public ResponseEntity<?> postavljanjeProdaje(HttpSession session,@RequestBody PostavljanjeProdajeDto postavljanjeProdajeDto) {
+        Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
+        if (korisnikPrijavljen == null) {
+            return new ResponseEntity<>("Nema prijavljenog prodavca", HttpStatus.BAD_REQUEST);
+        }
+        if(korisnikPrijavljen.getUloga()!= UlogaKorisnika.Uloga.PRODAVAC) {
+            return new ResponseEntity<>("Niste ulogovani kako PRODAVAC pristup odbijem",HttpStatus.FORBIDDEN);
+        }
+
+        Proizvod proizvod=new Proizvod();
+        Prodavac prodavac=(Prodavac)korisnikPrijavljen;
+        proizvod.setNaziv(postavljanjeProdajeDto.getNaziv());
+        proizvod.setOpis(postavljanjeProdajeDto.getOpis());
+        proizvod.setSlika(postavljanjeProdajeDto.getSlika());
+        proizvod.setCena(postavljanjeProdajeDto.getCena());
+        proizvod.setTipProdaje(postavljanjeProdajeDto.getTipProdaje());
+        proizvod.setProdavac(prodavac);
+        proizvod.setDatumObjavljivanja(LocalDate.now());
+        Kategorija kategorija=kategorijaRepository.findKategorijaByNaziv(postavljanjeProdajeDto.getKategorija().getNaziv());
+        if(kategorija==null){
+            Kategorija kategorija1= new Kategorija();
+            kategorija1.setNaziv(postavljanjeProdajeDto.getKategorija().getNaziv());
+            kategorijaRepository.save(kategorija1);
+            proizvod.setKategorija(kategorija1);
+        }else{
+            proizvod.setKategorija(kategorija);
+        }
+        //proizvod.getKategorija().setNaziv(postavljanjeProdajeDto.getKategorija().getNaziv());
+
+        proizvodRepository.save(proizvod);
+        return ResponseEntity.ok("Prodaja uspeno postavljena");
     }
 }

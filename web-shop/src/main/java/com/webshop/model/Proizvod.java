@@ -125,5 +125,9 @@ public class Proizvod implements Serializable {
     public void setProdat(boolean prodat) {
         this.prodat = prodat;
     }
+
+    public void setDatumObjavljivanja(LocalDate datumObjavljivanja) {
+        this.datumObjavljivanja = datumObjavljivanja;
+    }
 }
 

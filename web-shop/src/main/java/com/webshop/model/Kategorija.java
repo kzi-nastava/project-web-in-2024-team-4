@@ -14,7 +14,7 @@ public class Kategorija implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String naziv;
-    @OneToMany(mappedBy = "kategorija",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "kategorija",orphanRemoval = true)
     @JsonIgnore
     private List<Proizvod> proizvodi=new ArrayList<>();
 
