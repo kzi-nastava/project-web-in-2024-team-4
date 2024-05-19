@@ -8,6 +8,7 @@ import com.webshop.repository.KategorijaRepository;
 import com.webshop.repository.KorisnikRepository;
 import com.webshop.repository.PonudaRepository;
 import com.webshop.repository.ProizvodRepository;
+import com.webshop.service.EmailService;
 import com.webshop.service.KategorijaService;
 import com.webshop.service.ProizvodService;
 import jakarta.servlet.http.HttpSession;
@@ -42,6 +43,8 @@ public class ProizvodController {
     private KorisnikRepository korisnikRepository;
     @Autowired
     private PonudaRepository ponudaRepository;
+    @Autowired
+    EmailService emailService;
     @GetMapping("/lista-proizvoda")
     public ResponseEntity<List<ProizvodDto>> getAllProducts(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue ="10")int size){
         List<ProizvodDto> proizvod=proizvodService.getAllProducts(page,size);
@@ -91,18 +94,39 @@ public class ProizvodController {
                 if (!proizvod.isProdat()) {
                     kupljeniProizvodi.add(proizvod);
                     proizvod.setProdat(true);
+                    proizvodRepository.save(proizvod);
                     proizvodiNaProdaju.remove(proizvod);
+                    String prodavacEmail=prodavac.getEmailAdresa();
+                    String proizvodNaziv=proizvod.getNaziv();
+                    String kupacEmail=kupac.getEmailAdresa();
+                    emailService.sendEmail(kupacEmail,"Purches Confirmation","You have successfully purchased the product: "+proizvodNaziv);
+                    emailService.sendEmail(prodavacEmail,"Sold Confirmation","You have successfully sold the product "+proizvodNaziv);
+                }else {
+                    return new ResponseEntity<>("Proizvod je prodat",HttpStatus.BAD_REQUEST);
                 }
             } else if (proizvod.getTipProdaje() == TipProdaje.tipProdaje.Aukcija) {
                     if(!proizvod.isProdat()){
                         Ponuda ponuda=ponudaRepository.findTopByProizvodOrderByPonudaPostavljenaDesc(proizvod);
-                        if(ponuda.getCena()<novaCena){
-                            //ponuda.setCena(novaCena);
+                        if(ponuda==null){
+                            String prodavacEmail=prodavac.getEmailAdresa();
                             Ponuda novaPonuda=new Ponuda();
                             novaPonuda.setCena(novaCena);
                             novaPonuda.setProizvod(proizvod);
                             novaPonuda.setKupac(kupac);
                             novaPonuda.setPonuda_postavljena(LocalDateTime.now());
+                            emailService.sendEmail(prodavacEmail,"Informacije o novoj ceni","Nova cena proizvoda je "+novaCena);
+                            ponudaRepository.save(novaPonuda);
+                            return ResponseEntity.ok(novaPonuda);
+                        }
+                        if(ponuda.getCena()<novaCena){
+                            //ponuda.setCena(novaCena);
+                            String prodavacEmail=prodavac.getEmailAdresa();
+                            Ponuda novaPonuda=new Ponuda();
+                            novaPonuda.setCena(novaCena);
+                            novaPonuda.setProizvod(proizvod);
+                            novaPonuda.setKupac(kupac);
+                            novaPonuda.setPonuda_postavljena(LocalDateTime.now());
+                            emailService.sendEmail(prodavacEmail,"Informacije o novoj ceni","Nova cena proizvoda je "+novaCena);
                             ponudaRepository.save(novaPonuda);
                             return ResponseEntity.ok(novaPonuda);
                         }else {
@@ -112,7 +136,8 @@ public class ProizvodController {
             } else {
                 return new ResponseEntity<>("Ne postojeci Tip Prodaje", HttpStatus.BAD_REQUEST);
             }
-        return ResponseEntity.ok(kupac);
+        return  new ResponseEntity<>("Proizvod je uspesno prodat", HttpStatus.OK);
+
     }
 
 }
