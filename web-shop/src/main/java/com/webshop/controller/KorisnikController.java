@@ -485,4 +485,33 @@ public class KorisnikController {
         return new ResponseEntity<>("Proizvod je uspeno updatovan",HttpStatus.OK);
     }
 
+    @PostMapping("/prodavac/oceniKupca/{kupacId}")
+    public ResponseEntity<?> oceniKupca(@PathVariable Long kupacId, @RequestBody OcenjivanjeKupcaDto ocenjivanjeKupcaDto, HttpSession session) {
+        Korisnik korisnikPrijavljen = (Korisnik) session.getAttribute("korisnik");
+        if (korisnikPrijavljen == null) {
+            return new ResponseEntity<>("Nema prijavljenog prodavca", HttpStatus.BAD_REQUEST);
+        }
+        if (korisnikPrijavljen.getUloga() != UlogaKorisnika.Uloga.PRODAVAC) {
+            return new ResponseEntity<>("Korisnik nije kupac, nema pristupa", HttpStatus.FORBIDDEN);
+        }
+
+        rezenzijaService.oceniKupca(korisnikPrijavljen,korisnikRepository.findKorisnikById(kupacId),ocenjivanjeKupcaDto);
+        return  ResponseEntity.ok("Prodavac uspesno ocenjen");
+    }
+    @GetMapping("/prosecnaOcenaKupca/{id}")
+    public ResponseEntity<?> getProsecnaOcenaKupca(@PathVariable Long id){
+        Korisnik korisnik=korisnikRepository.findKorisnikById(id);
+        if(korisnik.getUloga()!= UlogaKorisnika.Uloga.KUPAC){
+            return ResponseEntity.badRequest().body("Uneti ID nije ID Kupca");
+        }
+        List<Recenzija> recenzijas=recenzijaRepository.findAllByKorisnikPrimio(korisnik);
+        Kupac kupac=(Kupac) korisnik;
+        double prosecnaOcena=kupac.getProsecna_ocena();
+        for(Recenzija r:recenzijas){
+            prosecnaOcena+=r.getOcena();
+        }
+        prosecnaOcena=prosecnaOcena/(recenzijas.size()+1);
+        return ResponseEntity.ok(prosecnaOcena);
+    }
+
 }
