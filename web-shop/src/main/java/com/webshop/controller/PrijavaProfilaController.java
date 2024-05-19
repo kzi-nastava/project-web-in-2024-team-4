@@ -53,4 +53,32 @@ public class PrijavaProfilaController {
         prijavaRepository.save(prijavaProfila);
         return ResponseEntity.ok("Uspeno podneta prijava");
     }
+
+    @PostMapping("/podnosiprijavu/prodavac")
+    public ResponseEntity<?> podnesiPrijavuProdavac(@RequestBody PodnosenjePrijaveDto podnosenjePrijaveDto, @RequestParam Long id,HttpSession session){
+        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        if(prijavljeniKorisnik==null)
+            return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
+
+        if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.PRODAVAC)
+            return new ResponseEntity<>("Niste ulogovani kao PRODAVAC pristup odbijen", HttpStatus.FORBIDDEN);
+        Korisnik korisnikNaKogSeOdnosiPrijava=korisnikRepository.findKorisnikById(id);
+        if(korisnikNaKogSeOdnosiPrijava.getUloga()!= UlogaKorisnika.Uloga.KUPAC){
+            return new ResponseEntity<>("Mozete samo prijavti KUPCA", HttpStatus.BAD_REQUEST);
+        }
+        boolean kupio=proizvodRepository.existsProizvodByProdavacAndKupac(prijavljeniKorisnik,korisnikNaKogSeOdnosiPrijava);
+        if(!kupio)
+            return new ResponseEntity<>("Kupac nije kupio proizvod od tog prodavca", HttpStatus.NOT_FOUND);
+
+        PrijavaProfila prijavaProfila = new PrijavaProfila();
+
+        prijavaProfila.setDatum_podnosenja_prijave(LocalDate.now());
+        prijavaProfila.setRazlog_prijave(podnosenjePrijaveDto.getRazlogPrijave());
+        prijavaProfila.setKorisnikPodnositelj(prijavljeniKorisnik);
+        prijavaProfila.setKorisnikOdnosiSe(korisnikNaKogSeOdnosiPrijava);
+        prijavaProfila.setStatusPrijave(StatusPrijave.faza.Podneta);
+        //Uslov da li mogu da se unesu dve iste prijave?
+        prijavaRepository.save(prijavaProfila);
+        return ResponseEntity.ok("Uspeno podneta prijava");
+    }
 }
