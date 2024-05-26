@@ -136,4 +136,26 @@ public class KorisnikService {
             }
     }
 
+    public ResponseEntity<?> administratorPregled(){
+        List<Recenzija> sveRecenzije=recenzijaRepository.findAll();
+        return ResponseEntity.ok(sveRecenzije);
+    }
+    public ResponseEntity<?> administratorIzmena(Long id,String komentar ){
+        Recenzija recenzija=recenzijaRepository.findRecenzijaById(id);
+        if(recenzija==null){
+            return new ResponseEntity<>("Recenzija sa datim id-em ne postoji",HttpStatus.NOT_FOUND);
+        }
+        recenzija.setKomentar(komentar);
+        recenzijaRepository.save(recenzija);
+        return ResponseEntity.ok("Komentar recenzije sa id = "+id+" je izmenjena");
+    }
+
+    public ResponseEntity<?> administratorObrisi(Long id){
+        Recenzija recenzija=recenzijaRepository.findRecenzijaById(id);
+        if(recenzija==null){
+            return new ResponseEntity<>("Recenzija sa datim id-em ne postoji",HttpStatus.NOT_FOUND);
+        }
+        recenzijaRepository.delete(recenzija);
+        return ResponseEntity.ok("Recenzija " +recenzija +" je uspeno obrisana");
+    }
 }

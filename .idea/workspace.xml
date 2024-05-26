@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/RecenzijaDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/PrijavaProfilaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/PrijavaProfilaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/RecenzijaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/RecenzijaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +141,11 @@
       <workItem from="1716030968473" duration="23381000" />
       <workItem from="1716111690987" duration="17852000" />
       <workItem from="1716135869696" duration="2872000" />
-      <workItem from="1716148422235" duration="4057000" />
+      <workItem from="1716148422235" duration="4200000" />
+      <workItem from="1716194270802" duration="1109000" />
+      <workItem from="1716213878762" duration="287000" />
+      <workItem from="1716313274807" duration="275000" />
+      <workItem from="1716753914379" duration="2063000" />
     </task>
     <servers />
   </component>

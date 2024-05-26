@@ -16,6 +16,7 @@ public interface RecenzijaRepository extends JpaRepository<Recenzija,Long> {
 
     List<Recenzija> findAllByKorisnikDao(Korisnik kupac);
 
+    Recenzija findRecenzijaById(Long id);
 
 
 

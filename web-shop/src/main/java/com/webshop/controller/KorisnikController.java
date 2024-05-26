@@ -423,6 +423,10 @@ public class KorisnikController {
         List<Proizvod> proizvods=kupac.getKupljeni_proizvodi();
         proizvods.add(proizvod);
 
+
+        //Dodaj proveru da li je taj proizvod pripada toj prodavcu ulogovanom
+
+
         Prodavac prodavac=(Prodavac) korisnikPrijavljen;
         List<Proizvod>proizvodiNaProdaju=prodavac.getProizvodi_na_prodaju();
         proizvodiNaProdaju.remove(proizvod);
@@ -543,5 +547,42 @@ public class KorisnikController {
         }
         return ResponseEntity.ok(pregledRecenzijaDtos);
     }
+    //4.1 Funkcionalnost
+    @GetMapping("/administrator/recenzije/pregled")
+    public ResponseEntity<?> administratorPregledRecenzija(HttpSession session){
+        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        if(prijavljeniKorisnik==null){
+            return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
+        }
+        if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.ADMINISTRATOR){
+            return new ResponseEntity<>("Samo administrator ima pristup", HttpStatus.FORBIDDEN);
+        }
+
+        return korisnikService.administratorPregled();
+    }
+
+    @PutMapping("/administrator/recenzije/izmena/{id}")
+    public ResponseEntity<?> administratorIzmenaRecenzija(HttpSession session,@PathVariable Long id,@RequestParam String komentar){
+        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        if(prijavljeniKorisnik==null){
+            return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
+        }
+        if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.ADMINISTRATOR){
+            return new ResponseEntity<>("Samo administrator ima pristup", HttpStatus.FORBIDDEN);
+        }
+        return korisnikService.administratorIzmena(id, komentar);
+    }
+    @PostMapping("/administrator/recenzije/obrisi")
+    public ResponseEntity<?> administratorObrisiRecenzija(HttpSession session,@RequestParam Long id){
+        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        if(prijavljeniKorisnik==null){
+            return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
+        }
+        if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.ADMINISTRATOR){
+            return new ResponseEntity<>("Samo administrator ima pristup", HttpStatus.FORBIDDEN);
+        }
+        return korisnikService.administratorObrisi(id);
+    }
+
 
 }
