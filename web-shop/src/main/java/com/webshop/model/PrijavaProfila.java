@@ -2,6 +2,7 @@ package com.webshop.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.Enumeracije.StatusPrijave;
 import jakarta.persistence.*;
 
@@ -18,10 +19,12 @@ public class PrijavaProfila implements Serializable {
     private LocalDate datumPodnosenjaPrijave;
     @ManyToOne
     @JoinColumn(name = "podneoPrijavu_ID", referencedColumnName = "id")
+    @JsonIgnore
     private Korisnik korisnikPodnositelj;
 
     @ManyToOne
     @JoinColumn(name = "odnosiSePrijava_ID", referencedColumnName = "id")
+    @JsonIgnore
     private Korisnik korisnikOdnosiSe;
 
 

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PrijavaRepository extends JpaRepository<PrijavaProfila,Long> {
-
+    PrijavaProfila findPrijavaProfilaById(Long id);
 }

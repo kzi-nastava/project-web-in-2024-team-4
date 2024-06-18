@@ -9,6 +9,7 @@ import com.webshop.dto.PrijavaKorisnikDto;
 import com.webshop.dto.ProdavacDto;
 import com.webshop.model.*;
 import com.webshop.repository.KorisnikRepository;
+import com.webshop.repository.PrijavaRepository;
 import com.webshop.repository.ProizvodRepository;
 import com.webshop.repository.RecenzijaRepository;
 import jakarta.servlet.http.HttpSession;
@@ -16,9 +17,11 @@ import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -32,6 +35,10 @@ public class KorisnikService {
     ProizvodRepository proizvodRepository;
     @Autowired
     RecenzijaRepository recenzijaRepository;
+    @Autowired
+    PrijavaRepository prijavaRepository;
+    @Autowired
+    EmailService emailService;
     public void createKupac(KorisnikRegistracijaDto korisnikRegistracijaDto){
         Kupac kupac= new Kupac(korisnikRegistracijaDto);
         korisnikRepository.save(kupac);
@@ -158,4 +165,37 @@ public class KorisnikService {
         recenzijaRepository.delete(recenzija);
         return ResponseEntity.ok("Recenzija " +recenzija +" je uspeno obrisana");
     }
+
+    public ResponseEntity<?> administratorGetPrijave(){
+        List<PrijavaProfila> prijavaProfilas=prijavaRepository.findAll();
+        return ResponseEntity.ok(prijavaProfilas);
+    }
+
+    public ResponseEntity<?> administratorObradiPrijavu(Long id, Boolean odluka, @Nullable String razlogOdbijanja){
+        PrijavaProfila prijavaProfila=prijavaRepository.findPrijavaProfilaById(id);
+        if(!odluka){
+            Korisnik korisnik=prijavaProfila.getKorisnikPodnositelj();
+            String email=korisnik.getEmailAdresa();
+            emailService.sendEmail(email,"Odbijena prijava",razlogOdbijanja);
+            return  new ResponseEntity<>("Vase prijava je odbijenja razlog odbijanja " + razlogOdbijanja,HttpStatus.OK);
+        }else if (odluka){
+            Korisnik korisnik=prijavaProfila.getKorisnikOdnosiSe();
+            korisnik.setBlokiran(true);
+            korisnikRepository.save(korisnik);
+            if(korisnik.getUloga()== UlogaKorisnika.Uloga.PRODAVAC){
+                List<Proizvod>proizvods=proizvodRepository.findAllByProdavac(korisnik);
+                for(Proizvod p:proizvods){
+                    if(!p.isProdat()){
+                        proizvodRepository.delete(p);
+                    }
+                }
+                String email = korisnik.getEmailAdresa();
+                emailService.sendEmail(email,"Prijava","Proizvodi koje ste postavili su obrisani usled prijave");
+            }else{
+                return new ResponseEntity<>("Prijavljeni korisnik nije Prodavac",HttpStatus.NOT_ACCEPTABLE);
+            }
+        }
+        return new ResponseEntity<>("Polje odluka mora biti true ili false",HttpStatus.BAD_REQUEST);
+    }
+
 }
