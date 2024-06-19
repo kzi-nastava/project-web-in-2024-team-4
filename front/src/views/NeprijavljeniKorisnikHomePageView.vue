@@ -10,11 +10,17 @@ export default {
       searchOpis:'',
       proizvod: [],
       ID:'',
+      kategorije:[],
+      maxCena:'',
+      minCena:'',
+      kategorijaPick:'',
+      tipProdaje:'',
     };
   },
   mounted() {
     this.getProizvodi();
     this.searchProizvodi();
+    this.getKategorije();
   },
   methods: {
     getProizvodi() {
@@ -48,8 +54,42 @@ export default {
             console.log(error);
             alert("Ne postoji proizvod sa tim ID-em");
           });
+    },
+    getKategorije(){
+      axios.get(`http://localhost:8081/kategorija`,{withCredentials:true}).then((response) => {
+        this.kategorije = response.data;
+      })
+          .catch((error) => {
+            console.log(error);
+            alert(error);
+          });
+      },
+    filter() {
+      // Provera i postavljanje podrazumevanih vrednosti
+      const minCena = this.minCena === "" ? 0 : this.minCena;
+      const maxCena = this.maxCena === "" ? 99999999999 : this.maxCena;
+      const kategorijaPick = this.kategorijaPick === "" ? "" : this.kategorijaPick;
+      const tipProdaje = this.tipProdaje === "" ? null : this.tipProdaje;
+
+      // Slanje GET zahteva ka API-ju sa query parametrima
+      axios.get(`http://localhost:8081/proizvod/search/filter`, {
+        params: {
+          minCena: minCena,
+          maxCena: maxCena,
+          tipProdaje: tipProdaje,
+          nazivKategorije: kategorijaPick
+        },
+        withCredentials: true
+      })
+          .then((response) => {
+            this.proizvodi = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Došlo je do greške prilikom filtriranja proizvoda.");
+          });
+     }
     }
-  }
 };
 </script>
 
@@ -81,6 +121,51 @@ export default {
     </div>
   </nav>
 
+  <div class="container mt-5" @submit.prevent="filter">
+    <form>
+      <div class="mb-4">
+        <label for="minPrice" class="form-label">Najmanja cena:</label>
+        <input type="number" class="form-control" id="minPrice" v-model="minCena" name="minPrice" placeholder="Najmanja Cena">
+      </div>
+
+      <div class="mb-4">
+        <label for="maxPrice" class="form-label">Najveca cena:</label>
+        <input type="number" class="form-control" id="maxPrice" v-model="maxCena" name="maxPrice" placeholder="Najveca Cena">
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Kategorije:</label>
+
+        <div class="form-check">
+          <div v-for="kategorija in kategorije">
+          <input class="form-check-input" type="radio" v-model="kategorijaPick" name="category" id="{{kategorija.id}}" :value="kategorija.naziv">
+            <label class="form-check-label" for="category{{kategorija.id}}">
+              {{kategorija.naziv}}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Nacin prodaje:</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" v-model="tipProdaje" name="tipProdaje" id="sellingType1" value="FiksnaCena">
+          <label class="form-check-label" for="fiksnaCena">
+            Fiksna cena
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" v-model="tipProdaje" name="tipProdaje" id="sellingType2" value="Aukcija">
+          <label class="form-check-label" for="aukcija">
+            Aukcija
+          </label>
+        </div>
+      </div>
+
+      <button  class="btn btn-primary">Filtriraj</button>
+    </form>
+  </div>
+
   <div><h1 class="proizvod">Proizvodi</h1></div>
   <div class="card-deck">
     <div v-for="proizvod in proizvodi" :key="proizvod.id" class="card" style="width: 18rem;">
@@ -88,6 +173,7 @@ export default {
       <div class="card-body">
         <h5 class="card-title">{{proizvod.ime}}</h5>
         <p class="card-text">{{proizvod.opis}}</p>
+        <p class="card-text"><strong>Cena {{proizvod.cena}} RSD</strong></p>
         <router-link :to="{ name: 'ProizvodDetalji', params: { id: proizvod.id } }" class="btn btn-primary">Vidi još</router-link>
       </div>
     </div>
@@ -134,10 +220,13 @@ export default {
 }
 
 .card-deck {
-  display: flex;
   height: fit-content;
   flex-wrap: wrap;
   align-items: stretch;
+  display: flow;
+  width: 70%;
+  margin-left: 300px;
+
 }
 
 .card {
@@ -182,4 +271,15 @@ footer {
   background: #80D0C7;
   border-color: #80D0C7;
 }
+.mt-5 {
+  width: 15%;
+  height: 70%;
+  position: fixed;
+  display:block;
+  margin-left: 50px;
+  margin-right: 50px;
+  background: grey;
+  color: #74EBD5;
+}
+
 </style>
