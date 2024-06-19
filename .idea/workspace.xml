@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/front/src/views/ProizvodDetalji.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/configuration/CorsRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +24,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="com.haulmont.jpb.NewClass" />
+        <option value="Class" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
@@ -65,7 +74,7 @@
     "Spring Boot.WebShopApplication.executor": "Run",
     "git-widget-placeholder": "frontEndIsidor",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Web Programiranje/9. Vue.js/demo",
+    "last_opened_file_path": "D:/Web Programiranje/8. JavaScript, jQuery i AJAX/jQuery i AJAX/AjaxJQuery",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,6 +83,11 @@
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "D:\\Web Programiranje\\Intellij\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected="Spring Boot.WebShopApplication">
@@ -152,7 +166,8 @@
       <workItem from="1717324292265" duration="67000" />
       <workItem from="1718732506916" duration="706000" />
       <workItem from="1718734801763" duration="407000" />
-      <workItem from="1718735220479" duration="1131000" />
+      <workItem from="1718735220479" duration="1356000" />
+      <workItem from="1718788605955" duration="17983000" />
     </task>
     <servers />
   </component>
