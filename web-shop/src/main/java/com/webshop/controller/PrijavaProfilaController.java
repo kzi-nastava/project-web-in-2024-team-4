@@ -51,6 +51,8 @@ public class PrijavaProfilaController {
         return new ResponseEntity<>("Prijava Profila odbijena!", HttpStatus.OK);
     }
 
+    //4.2
+
     @PostMapping("/prihvati-prijavu/{id}")
     public ResponseEntity<?> prihvatiPrijavu(@PathVariable Long id, HttpSession session) {
         Korisnik korisnik = (Korisnik) session.getAttribute("korisnik");

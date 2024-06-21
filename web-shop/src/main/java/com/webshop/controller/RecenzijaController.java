@@ -134,6 +134,7 @@ public class RecenzijaController {
      */
 
     //admin moze da izmeni samo komentar recenzije!
+    //4.1
     @PostMapping("/izmeni-recenziju/{id}")
     public ResponseEntity<?> izmeniRecenziju(@PathVariable Long id, @RequestBody RecenzijaDto komentar, HttpSession session) {
         Korisnik korisnik = (Korisnik) session.getAttribute("korisnik");
