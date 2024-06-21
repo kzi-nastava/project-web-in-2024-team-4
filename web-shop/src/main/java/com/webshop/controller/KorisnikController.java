@@ -596,7 +596,7 @@ public class KorisnikController {
         return korisnikService.administratorGetPrijave();
     }
 
-    //4.2 Funkcionalnost
+    //4.2 Funkcionalnost administratora
 
     @PostMapping("/administrator/podneseneprijave/obrada/{id}")
     public ResponseEntity<?> administratorObarada(HttpSession session,@PathVariable Long id,@RequestParam Boolean odluka,@Nullable @RequestParam String razlogOdbijanja){
