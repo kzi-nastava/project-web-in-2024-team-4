@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import router from "@/router";
 
 export default {
   name: "GuestUserView",
@@ -42,19 +43,6 @@ export default {
             alert("Ne posotji proizvod sa tim nazivom");
           });
     },
-    seeMore(id) {
-      axios.get(`http://localhost:8081/proizvod/lista-proizvoda/${id}`, { withCredentials: true })
-          .then((response) => {
-            const index = this.proizvodi.findIndex(proizvod => proizvod.id === id);
-            if (index !== -1) {
-              this.$set(this.proizvodi, index, response.data);
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("Ne postoji proizvod sa tim ID-em");
-          });
-    },
     getKategorije(){
       axios.get(`http://localhost:8081/kategorija`,{withCredentials:true}).then((response) => {
         this.kategorije = response.data;
@@ -88,7 +76,13 @@ export default {
             console.log(error);
             alert("Došlo je do greške prilikom filtriranja proizvoda.");
           });
-     }
+     },
+    login(){
+      router.push("/korisnik/prijava-korisnika");
+    },
+    register(){
+      router.push("/korisnik/registracija");
+    }
     }
 };
 </script>
@@ -96,14 +90,14 @@ export default {
 <template>
   <nav  class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">WebShop</a>
+      <a class="navbar-brand" href="/home">WebShop</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -114,15 +108,15 @@ export default {
           <button class="btn btn-outline-success" v-on:click="searchProizvodi()" type="submit">Search</button>
         </form>
         <div class="d-grid gap-1 d-md-flex justify-content-md-end">
-          <button id="loginBtn" class="btn btn-primary me-md-2" style="margin-left: 40px" type="button">Login</button>
-          <button id="registerBtn" class="btn btn-primary" type="button">Register</button>
+          <button id="loginBtn" class="btn btn-primary me-md-2" v-on:click="login()" style="margin-left: 40px" type="button">Login</button>
+          <button id="registerBtn" class="btn btn-primary" v-on:click="register()" type="button">Register</button>
         </div>
       </div>
     </div>
   </nav>
 
   <div class="container mt-5" @submit.prevent="filter">
-    <form>
+    <form class="filter_proizvoda">
       <div class="mb-4">
         <label for="minPrice" class="form-label">Najmanja cena:</label>
         <input type="number" class="form-control" id="minPrice" v-model="minCena" name="minPrice" placeholder="Najmanja Cena">
