@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import NeprijavljeniHomePage from '../views/NeprijavljeniKorisnikHomePageView.vue';
 import ProizvodDetalji from "@/views/ProizvodDetalji.vue";
+import ProfileUpdate from "@/views/ProfileUpdate.vue";
 const routes = [
     {
         path: '/',
@@ -10,10 +11,17 @@ const routes = [
             title:'Home'
         }
     },
+
     {
         path: '/proizvod/lista-proizvoda/:id',
         name: 'ProizvodDetalji',
         component: ProizvodDetalji
+    },
+
+    {
+         path: '/updateProfile',
+         name : '/UpdateProfile',
+         component: ProfileUpdate,
     }
 ]
 
