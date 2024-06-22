@@ -34,6 +34,20 @@
       <li><strong>Cena:</strong> {{ proizvod.cena }} RSD</li>
       <li><strong>Kategorija:</strong> {{ proizvod.kategorija.naziv }}</li>
     </ul>
+    <div v-if="proizvod.tipProdaje=='FiksnaCena'">
+      <button v-on:click="kupiProizvodFiksnaCena()"> Kupi proizvod</button>
+    </div>
+    <div v-else>
+      <label>Najvisa cena do sada(Bidovana)</label>
+      <input readonly v-model="this.najvisaCena">
+      <br/>
+      <label>Unesite cenu</label>
+      <input placeholder="Ovde unosite cenu za aukciju" v-model="this.novaCena">
+      <br/>
+      <br/>
+      <button v-on:click="kupiProizvodAukcija()">Prosledi Cenu za Aukciju</button>
+    </div>
+
   </div>
   <div v-else>
     <p>Proizvod se učitava ili ne postoji.</p>
@@ -48,6 +62,9 @@ export default {
   data() {
     return {
       proizvod: null,
+      novaCena:null,
+      message:'',
+      najvisaCena:null,
     };
   },
   created() {
@@ -61,6 +78,10 @@ export default {
       axios.get(`http://localhost:8081/proizvod/lista-proizvoda/${id}`, { withCredentials: true })
           .then((response) => {
             console.log(response.data);
+            for(let ponuda of response.data.ponuda){
+              if(ponuda.cena>this.najvisaCena)
+                this.najvisaCena=ponuda.cena;
+            }
             this.proizvod = response.data;
           })
           .catch((error) => {
@@ -90,7 +111,34 @@ export default {
     },
     getKorisnik(){
         this.korisnik = JSON.parse(localStorage.getItem('korisnik'));
-    },
+    },kupiProizvodFiksnaCena(){
+      const id = this.$route.params.id;
+      console.log(this.korisnik);
+      axios.post(`http://localhost:8081/proizvod/kupiproizvode?id=${id}`,this.korisnik,{ withCredentials: true })
+          .then((response) => {
+            console.log(response.data);
+            this.message = response.data;
+            alert(this.message);
+          })
+          .catch((error) => {
+            if(error.response){
+              alert(error.response.data);
+            }
+          });
+    },kupiProizvodAukcija(){
+    const id = this.$route.params.id;
+    axios.post(`http://localhost:8081/proizvod/kupiproizvode?id=${id}&novaCena=${this.novaCena}`,this.korisnik,{ withCredentials: true })
+        .then((response) => {
+         console.log(response.data);
+          this.message = response.data;
+          alert("Uspesno dodata ponuda, ponuda="+this.novaCena);
+        })
+        .catch((error) => {
+          if(error.response){
+            alert(error.response.data);
+          }
+        });
+  },
   }
 };
 </script>
