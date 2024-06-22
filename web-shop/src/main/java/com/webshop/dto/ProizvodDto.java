@@ -1,10 +1,9 @@
 package com.webshop.dto;
 
 import com.webshop.Enumeracije.TipProdaje;
-import com.webshop.model.Kategorija;
-import com.webshop.model.Korisnik;
-import com.webshop.model.Prodavac;
-import com.webshop.model.Proizvod;
+import com.webshop.model.*;
+
+import java.util.List;
 
 public class ProizvodDto {
     private long id;
@@ -15,9 +14,10 @@ public class ProizvodDto {
     private String slika;
     private TipProdaje.tipProdaje tipProdaje;
     private Korisnik prodavac;
+    private List<Ponuda> ponuda;
 
     public ProizvodDto(){}
-    public ProizvodDto(long id,String ime,String opis,Kategorija kategorija,double cena,String slika,TipProdaje.tipProdaje tipProdaje,Korisnik prodavac){
+    public ProizvodDto(long id,String ime,String opis,Kategorija kategorija,double cena,String slika,TipProdaje.tipProdaje tipProdaje,Korisnik prodavac,List<Ponuda> ponuda){
         this.id=id;
         this.ime=ime;
         this.opis=opis;
@@ -26,6 +26,7 @@ public class ProizvodDto {
         this.slika=slika;
         this.tipProdaje=tipProdaje;
         this.prodavac=prodavac;
+        this.ponuda=ponuda;
     }
     public ProizvodDto(Proizvod proizvod){
         this.id=proizvod.getId();
@@ -36,6 +37,7 @@ public class ProizvodDto {
         this.slika=proizvod.getSlika();
         this.tipProdaje=proizvod.getTipProdaje();
         this.prodavac=(Prodavac)proizvod.getProdavac();
+        this.ponuda=proizvod.getPonude();
     }
 
     public long getId() {
@@ -100,5 +102,13 @@ public class ProizvodDto {
 
     public void setProdavac(Korisnik prodavac) {
         this.prodavac = prodavac;
+    }
+
+    public List<Ponuda> getPonuda() {
+        return ponuda;
+    }
+
+    public void setPonuda(List<Ponuda> ponuda) {
+        this.ponuda = ponuda;
     }
 }

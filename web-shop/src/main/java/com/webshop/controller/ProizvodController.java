@@ -74,9 +74,10 @@ public class ProizvodController {
         ProizvodDto proizvodDto=proizvodService.getOneProducts(id);
         return ResponseEntity.ok(proizvodDto);
     }
-    @GetMapping("/kupiproizvode")
-    public ResponseEntity<?>kupiProizvod(HttpSession session, @RequestParam long id,@RequestParam @Nullable double novaCena){
-        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+    @PostMapping("/kupiproizvode")
+    public ResponseEntity<?>kupiProizvod(@RequestBody Kupac korisnikPoslat,@RequestParam long id,@RequestParam @Nullable Double novaCena,HttpSession session){
+        //Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        Korisnik prijavljeniKorisnik = korisnikPoslat;
           if(prijavljeniKorisnik==null){
                 return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
         }
@@ -116,7 +117,8 @@ public class ProizvodController {
                             novaPonuda.setPonuda_postavljena(LocalDateTime.now());
                             emailService.sendEmail(prodavacEmail,"Informacije o novoj ceni","Nova cena proizvoda je "+novaCena);
                             ponudaRepository.save(novaPonuda);
-                            return ResponseEntity.ok(novaPonuda);
+                            //return ResponseEntity.ok(novaPonuda);
+                            return  ResponseEntity.ok().body("Uspesno ste dodali novu ponudu");
                         }
                         if(ponuda.getCena()<novaCena){
                             //ponuda.setCena(novaCena);

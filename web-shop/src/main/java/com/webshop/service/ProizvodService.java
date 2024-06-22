@@ -77,6 +77,7 @@ public class ProizvodService {
         dto.setSlika(product.getSlika());
         dto.setTipProdaje(product.getTipProdaje());
         dto.setProdavac(product.getProdavac());
+        dto.setPonuda(product.getPonude());
         return dto;
     }
 }
