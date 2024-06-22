@@ -36,13 +36,14 @@
       <div class="circle circle-two"></div>
     </div>
     <div class="theme-btn-container"></div>
-
   </section>
 </template>
 
 <script>
 import axios from "axios";
 import router from "@/router";
+import  {inject,ref} from "vue";
+
 export default {
   name: "LoginView",
   data: function () {
@@ -61,7 +62,17 @@ export default {
           })
           .then((res) => {
             console.log(res);
-            this.$router.push("/home");
+            localStorage.setItem("korisnik", JSON.stringify(res.data));
+            // Provera uloge korisnika
+            if (res.data.uloga === 'KUPAC') {
+              console.log(res.data.uloga);
+              this.$router.push("/korisnik/logged/kupac");
+            } else if (res.data.uloga === 'PRODAVAC') {
+              console.log("Korisnik je prodavac");
+              this.$router.push("/korisnik/logged/prodavac");
+            }else {
+              this.$router.push("/korisnik/logged/admin");
+            }
           })
           .catch((err) => {
             if (err.response) {

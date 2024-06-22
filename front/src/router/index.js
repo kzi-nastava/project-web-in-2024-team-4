@@ -3,7 +3,14 @@ import NeprijavljeniHomePage from '../views/NeprijavljeniKorisnikHomePageView.vu
 import ProizvodDetalji from "@/views/ProizvodDetalji.vue";
 import LoginPageView  from "@/views/LoginPageView.vue";
 import RegisterPageView from "@/views/RegisterPageView.vue";
+import KupacHomeView from "@/views/KupacHomeView.vue";
+import ProizvodDetaljiKupacView from "@/views/ProizvodDetaljiKupacView.vue";
+import KupacUpdateInfoView from  "@/views/KupacUpdateInfoView.vue";
 const routes = [
+    {
+        path:'/',
+        redirect:'/home',
+    },
     {
         path: '/home',
         name: 'home',
@@ -26,14 +33,26 @@ const routes = [
         path: '/korisnik/registracija',
         name: 'RegisterPageView',
         component: RegisterPageView
+    },
+    {
+        path:'/korisnik/logged/kupac',
+        name:'KupacHomeView',
+        component: KupacHomeView
+    },
+    {
+        path:'/korisnik/logged/kupac/proizvod-detalji/:id',
+        name:'ProizvodDetaljiKupacView',
+        component: ProizvodDetaljiKupacView
+    },
+    {
+        path:'/korisnik/logged/kupac/updateinfo',
+        name:'KupacUpdateInfoView',
+        component:KupacUpdateInfoView,
     }
-
-
 ]
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 })
-
 export default router
