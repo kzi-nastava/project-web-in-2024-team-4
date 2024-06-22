@@ -1,5 +1,6 @@
 package com.webshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
@@ -13,8 +14,10 @@ public class Ponuda implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Kupac kupac;
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JsonIgnore
     private Proizvod proizvod;
 
     //LcalDateTime ponuda postavljena

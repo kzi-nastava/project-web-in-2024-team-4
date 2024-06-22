@@ -15,8 +15,9 @@ public class KupacDto implements Serializable {
     private final String datumRodjenja;
     private final String profilnaSlika;
     private final String opis;
+    private final String novaLozinka;
 
-    public KupacDto(String ime, String prezime, String korisnickoIme, String emailAdresa, String brojTelefona, String lozinka, String datumRodjenja, String profilnaSlika, String opis) {
+    public KupacDto(String ime, String prezime, String korisnickoIme, String emailAdresa, String brojTelefona, String lozinka, String datumRodjenja, String profilnaSlika, String opis,String novaLozinka) {
         this.ime = ime;
         this.prezime = prezime;
         this.korisnickoIme = korisnickoIme;
@@ -26,6 +27,7 @@ public class KupacDto implements Serializable {
         this.datumRodjenja = datumRodjenja;
         this.profilnaSlika = profilnaSlika;
         this.opis = opis;
+        this.novaLozinka=novaLozinka;
     }
 
     public String getIme() {
@@ -63,4 +65,5 @@ public class KupacDto implements Serializable {
     public String getOpis() {
         return opis;
     }
+    public String getNovaLozinka(){return  novaLozinka;}
 }

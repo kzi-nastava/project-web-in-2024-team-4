@@ -45,11 +45,14 @@ public class KorisnikController {
     EmailService emailService;
     @PostMapping("/registracija")
     public ResponseEntity<?> registracijaKorisnika(@RequestBody KorisnikRegistracijaDto korisnikRegistracijaDto){
+        if(korisnikRegistracijaDto.getKorisnickoIme().isEmpty()||korisnikRegistracijaDto.getBrojTelefona().isEmpty()||korisnikRegistracijaDto.getLozinka().isEmpty()||korisnikRegistracijaDto.getEmailAdresa().isEmpty()||korisnikRegistracijaDto.getIme().isEmpty()||korisnikRegistracijaDto.getPrezime().isEmpty()){
+            return new ResponseEntity<>("Nisu uneseni adekvatni podaci", HttpStatus.BAD_REQUEST);
+        }
        ResponseEntity<?> zahtev = korisnikService.registracijaKorisnika(korisnikRegistracijaDto);
         return ResponseEntity.ok(zahtev.getBody());
     }
     @PostMapping("/prijava-korisnika")
-    public ResponseEntity<String> prijava(@RequestBody PrijavaKorisnikDto prijavaKorisnikDto,HttpSession session){
+    public ResponseEntity<?> prijava(@RequestBody PrijavaKorisnikDto prijavaKorisnikDto,HttpSession session){
         if(prijavaKorisnikDto.getKorisnickoIme().isEmpty()|| prijavaKorisnikDto.getLozinka().isEmpty()){
             return new ResponseEntity<>("Nisu uneseni adekvatni podaci", HttpStatus.BAD_REQUEST);
         }else{
@@ -57,7 +60,7 @@ public class KorisnikController {
                 Korisnik korisnik = korisnikService.prijavaKorisnika(prijavaKorisnikDto);
                 // Ako korisnik postoji i lozinka je tačna, možemo nastaviti sesiju
                 session.setAttribute("korisnik", korisnik);
-                return new ResponseEntity<>("Uspešna prijava", HttpStatus.OK);
+                return new ResponseEntity<>(korisnik, HttpStatus.OK);
             } catch (Exception e) {
                 // Obradi izuzetak ako korisnik ne postoji ili lozinka nije tačna
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
@@ -118,7 +121,7 @@ public class KorisnikController {
         if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.KUPAC){
             return  new ResponseEntity<>("Forbidden",HttpStatus.FORBIDDEN);
         }
-        if (kupacDto.getKorisnickoIme()!=null || kupacDto.getEmailAdresa()!=null){
+        if (kupacDto.getKorisnickoIme()!=null || kupacDto.getEmailAdresa()!=null||kupacDto.getLozinka()!=null){
             // Provera da li je stara lozinka tačna
             if (!korisnikService.checkPassword(prijavljeniKorisnik.getId(), kupacDto.getLozinka())) {
                 return new ResponseEntity<>("Trenutna lozinka nije tačna.", HttpStatus.BAD_REQUEST);
@@ -140,6 +143,11 @@ public class KorisnikController {
             prijavljeniKorisnik.setProfilnaSlika(kupacDto.getProfilnaSlika());
         if(kupacDto.getOpis()!=null)
             prijavljeniKorisnik.setOpis(kupacDto.getOpis());
+        if(!kupacDto.getNovaLozinka().isEmpty()){
+            prijavljeniKorisnik.setLozinka(kupacDto.getNovaLozinka());
+        }else{
+            prijavljeniKorisnik.setLozinka((kupacDto.getLozinka()));
+        }
         korisnikService.saveKorisnik(prijavljeniKorisnik);
         return new ResponseEntity<>("Uspesno izmenjeni podaci",HttpStatus.OK);
     }
