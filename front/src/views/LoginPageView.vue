@@ -54,6 +54,9 @@ export default {
 
     };
   },
+  mounted() {
+    this.isUserLogged();
+  },
   methods: {
     login: function () {
       axios
@@ -92,7 +95,24 @@ export default {
     },
     register(){
       router.push('/korisnik/registracija')
-    }
+    },
+    isUserLogged() {
+      if (localStorage.getItem('korisnik') == null) {
+        this.$router.push('/korisnik/prijava-korisnika');
+        localStorage.removeItem('korisnik');
+      }
+      else {
+        const korisnik = JSON.parse(localStorage.getItem('korisnik'));
+        if (korisnik.uloga === 'KUPAC') {
+          this.$router.push("/korisnik/logged/kupac");
+        } else if (korisnik.ulogauloga === 'PRODAVAC') {
+          this.$router.push("/korisnik/logged/prodavac");
+        }else {
+          this.$router.push("/korisnik/logged/admin");
+        }
+      }
+    },
+
   }
 };
 </script>

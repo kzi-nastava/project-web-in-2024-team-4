@@ -8,6 +8,9 @@ export default {
       korisnik: {},
     };
   },
+  mounted() {
+    this.isUserLogged();
+  },
   methods:{
     register(){
       axios.post("http://localhost:8081/korisnik/registracija",this.korisnik,{withCredentials:true,})
@@ -25,7 +28,21 @@ export default {
     },
     home(){
       router.push('/home');
-    }
+    }, isUserLogged() {
+      if (localStorage.getItem('korisnik') == null) {
+        this.$router.push('/korisnik/registracija');
+      }
+      else {
+        const korisnik = JSON.parse(localStorage.getItem('korisnik'));
+        if (korisnik.uloga === 'KUPAC') {
+          this.$router.push("/korisnik/logged/kupac");
+        } else if (korisnik.ulogauloga === 'PRODAVAC') {
+          this.$router.push("/korisnik/logged/prodavac");
+        }else {
+          this.$router.push("/korisnik/logged/admin");
+        }
+      }
+    },
   }
   };
 </script>

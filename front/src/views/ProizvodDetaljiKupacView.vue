@@ -30,6 +30,7 @@
     <img :src="proizvod.slika" alt="slika proizvoda" class="product-image">
     <p><strong>{{ proizvod.opis }}</strong></p>
     <ul>
+      <li><router-link :to="{ name: 'PrikazInformacijaKupca', params: { id: proizvod.prodavac.id,proizvodiNaProdaju:proizvod.prodavac.proizvodiNaProdaju, } }" class="btn btn-primary">Klikni da vidis vise informacija o prodavcu</router-link></li>
       <li><strong>Cena:</strong> {{ proizvod.cena }} RSD</li>
       <li><strong>Kategorija:</strong> {{ proizvod.kategorija.naziv }}</li>
     </ul>
@@ -59,6 +60,7 @@ export default {
       const id = this.$route.params.id;
       axios.get(`http://localhost:8081/proizvod/lista-proizvoda/${id}`, { withCredentials: true })
           .then((response) => {
+            console.log(response.data);
             this.proizvod = response.data;
           })
           .catch((error) => {

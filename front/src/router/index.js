@@ -6,6 +6,7 @@ import RegisterPageView from "@/views/RegisterPageView.vue";
 import KupacHomeView from "@/views/KupacHomeView.vue";
 import ProizvodDetaljiKupacView from "@/views/ProizvodDetaljiKupacView.vue";
 import KupacUpdateInfoView from  "@/views/KupacUpdateInfoView.vue";
+import PrikazInformacijaKupca from "@/views/PrikazInformacijaKupca.vue";
 const routes = [
     {
         path:'/',
@@ -48,6 +49,10 @@ const routes = [
         path:'/korisnik/logged/kupac/updateinfo',
         name:'KupacUpdateInfoView',
         component:KupacUpdateInfoView,
+    },{
+    path:'/korisnik/kupac/pregled/:id',
+        name:'PrikazInformacijaKupca',
+        component: PrikazInformacijaKupca,
     }
 ]
 
