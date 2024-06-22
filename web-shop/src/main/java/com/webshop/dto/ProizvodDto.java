@@ -2,6 +2,8 @@ package com.webshop.dto;
 
 import com.webshop.Enumeracije.TipProdaje;
 import com.webshop.model.Kategorija;
+import com.webshop.model.Korisnik;
+import com.webshop.model.Prodavac;
 import com.webshop.model.Proizvod;
 
 public class ProizvodDto {
@@ -12,9 +14,10 @@ public class ProizvodDto {
     private double cena;
     private String slika;
     private TipProdaje.tipProdaje tipProdaje;
+    private Korisnik prodavac;
 
     public ProizvodDto(){}
-    public ProizvodDto(long id,String ime,String opis,Kategorija kategorija,double cena,String slika,TipProdaje.tipProdaje tipProdaje){
+    public ProizvodDto(long id,String ime,String opis,Kategorija kategorija,double cena,String slika,TipProdaje.tipProdaje tipProdaje,Korisnik prodavac){
         this.id=id;
         this.ime=ime;
         this.opis=opis;
@@ -22,6 +25,7 @@ public class ProizvodDto {
         this.cena=cena;
         this.slika=slika;
         this.tipProdaje=tipProdaje;
+        this.prodavac=prodavac;
     }
     public ProizvodDto(Proizvod proizvod){
         this.id=proizvod.getId();
@@ -31,6 +35,7 @@ public class ProizvodDto {
         this.cena=proizvod.getCena();
         this.slika=proizvod.getSlika();
         this.tipProdaje=proizvod.getTipProdaje();
+        this.prodavac=(Prodavac)proizvod.getProdavac();
     }
 
     public long getId() {
@@ -87,5 +92,13 @@ public class ProizvodDto {
 
     public void setTipProdaje(TipProdaje.tipProdaje tipProdaje) {
         this.tipProdaje = tipProdaje;
+    }
+
+    public Korisnik getProdavac() {
+        return prodavac;
+    }
+
+    public void setProdavac(Korisnik prodavac) {
+        this.prodavac = prodavac;
     }
 }

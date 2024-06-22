@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/front/src/views/KupacUpdateInfoView.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/views/ProizvodDetaljiKupacView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/views/PrikazInformacijaKupca.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/KupacHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/KupacHomeView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/LoginPageView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/LoginPageView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/NeprijavljeniKorisnikHomePageView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/NeprijavljeniKorisnikHomePageView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/ProizvodDetalji.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/ProizvodDetalji.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/KupacDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/KupacDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Ponuda.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/Ponuda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/ProizvodDetaljiKupacView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/ProizvodDetaljiKupacView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/RegisterPageView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/RegisterPageView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/ProizvodDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/ProizvodDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/ProizvodService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/ProizvodService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +172,8 @@
       <workItem from="1718986967054" duration="20674000" />
       <workItem from="1719008738876" duration="48000" />
       <workItem from="1719009744498" duration="334000" />
-      <workItem from="1719046889958" duration="11520000" />
+      <workItem from="1719046889958" duration="11721000" />
+      <workItem from="1719062437094" duration="11107000" />
     </task>
     <servers />
   </component>
