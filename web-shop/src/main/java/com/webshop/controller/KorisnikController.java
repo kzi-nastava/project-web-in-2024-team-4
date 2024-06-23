@@ -241,7 +241,14 @@ public class KorisnikController {
         if (korisnikPrijavljen.getUloga() != UlogaKorisnika.Uloga.KUPAC) {
             return new ResponseEntity<>("Korisnik nije kupac, nema pristupa", HttpStatus.FORBIDDEN);
         }
-
+        double ocena = ocenjivanjeProdavcaDto.getOcena();
+        if (ocena < 1 || ocena > 5) {
+            return new  ResponseEntity("Ocena mora biti u opsegu od 1 do 5.",HttpStatus.BAD_REQUEST);
+        }
+        boolean kupioProizvod=proizvodRepository.existsProizvodByKupacAndProdavac(korisnikPrijavljen,korisnikRepository.findKorisnikById(prodavacId));
+        if (!kupioProizvod) {
+            return new  ResponseEntity("Kupac nije kupio proizvod od tog prodavca ne moze mu ostaviti ocenu",HttpStatus.BAD_REQUEST);
+        }
         rezenzijaService.oceniProdavca(korisnikPrijavljen,korisnikRepository.findKorisnikById(prodavacId),ocenjivanjeProdavcaDto);
         return  ResponseEntity.ok("Prodavac uspesno ocenjen");
 

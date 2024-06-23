@@ -9,6 +9,7 @@ import com.webshop.repository.RecenzijaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class RecenzijaService {
 
         boolean kupioProizvod=proizvodRepository.existsProizvodByKupacAndProdavac(kupac,prodavac);
         if (!kupioProizvod) {
-            throw new IllegalArgumentException("Kupac nije kupio proizvod od datog prodavca.");
+            throw new IllegalArgumentException("Kupac nije kupio proizvod od tog prodavca ne moze mu ostaviti ocenu");
         }
 
         // Provera da li je ocena validna (u opsegu od 1 do 5)

@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/front/src/views/PregledRecenzijaKupac.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/views/PrijavaProfilaKupac.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/KupacHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/KupacHomeView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/ProizvodDetaljiKupacView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/ProizvodDetaljiKupacView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/ProizvodController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/ProizvodController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/ProizvodDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/dto/ProizvodDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/ProizvodService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/ProizvodService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/RecenzijaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/RecenzijaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +174,8 @@
       <workItem from="1719009744498" duration="334000" />
       <workItem from="1719046889958" duration="11721000" />
       <workItem from="1719062437094" duration="11332000" />
-      <workItem from="1719077222856" duration="8764000" />
+      <workItem from="1719077222856" duration="9159000" />
+      <workItem from="1719138224928" duration="19673000" />
     </task>
     <servers />
   </component>
