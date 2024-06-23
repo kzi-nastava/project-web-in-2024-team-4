@@ -19,10 +19,10 @@ public class Recenzija implements Serializable {
     @Temporal(TemporalType.DATE)
     private LocalDate datumRecenzije;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+   // @JsonIgnore
     private Korisnik korisnikPrimio;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    //@JsonIgnore
     private Korisnik korisnikDao;
     //Kupac,Prodavac
     //Ko je dao recenziju

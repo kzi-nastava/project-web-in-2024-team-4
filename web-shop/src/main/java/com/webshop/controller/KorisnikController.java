@@ -577,8 +577,9 @@ public class KorisnikController {
     }
 
     @PutMapping("/administrator/recenzije/izmena/{id}")
-    public ResponseEntity<?> administratorIzmenaRecenzija(HttpSession session,@PathVariable Long id,@RequestParam String komentar){
-        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+    public ResponseEntity<?> administratorIzmenaRecenzija(@RequestBody Korisnik prijavljenKorisnikFront, HttpSession session,@PathVariable Long id,@RequestParam String komentar){
+       // Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+        Korisnik prijavljeniKorisnik = prijavljenKorisnikFront;
         if(prijavljeniKorisnik==null){
             return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
         }
@@ -588,13 +589,13 @@ public class KorisnikController {
         return korisnikService.administratorIzmena(id, komentar);
     }
     @PostMapping("/administrator/recenzije/obrisi")
-    public ResponseEntity<?> administratorObrisiRecenzija(HttpSession session,@RequestParam Long id){
-        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+    public ResponseEntity<?> administratorObrisiRecenzija(@RequestBody Korisnik prijavljeniKorisnikFront, HttpSession session,@RequestParam Long id){
+        Korisnik prijavljeniKorisnik =prijavljeniKorisnikFront;
         if(prijavljeniKorisnik==null){
             return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
         }
         if(prijavljeniKorisnik.getUloga()!= UlogaKorisnika.Uloga.ADMINISTRATOR){
-            return new ResponseEntity<>("Samo administrator ima pristup", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(prijavljeniKorisnikFront, HttpStatus.FORBIDDEN);
         }
         return korisnikService.administratorObrisi(id);
     }
