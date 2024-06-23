@@ -34,14 +34,13 @@ export default {
     <div><h2 class="Korisnici">Korisnici</h2></div>
     <div class="card-deck">
       <div v-for="korisnik in korisnici" class="card " style="width: 18rem;">
-      <img :src="korisnik.profilnaSlika" class="card-img-top" alt="slika">
       <div class="card-body">
       <h5 class="card-title">{{korisnik.ime}} {{korisnik.prezime}} </h5>
       <h5 class="card-title">{{korisnik.opis}}</h5>
       <h5 class="card-title">{{korisnik.brojTelefona}}</h5>
-      <h5 class="card-title">{{korisnik.Uloga}}</h5>
+      <h5 class="card-title">{{korisnik.ulogauloga}}</h5>
         <h5 class="card-title">{{korisnik.id}}</h5>
-        <router-link :to="{ name: 'profil', params: { id: korisnik.id}}"> Vidi jos </router-link>
+        <router-link :to="{ name: 'prodavac/pregled', params: { id: korisnik.id}}"> Vidi jos </router-link>
       </div>
     </div>
   </div>

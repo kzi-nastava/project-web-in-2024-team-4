@@ -30,19 +30,18 @@ export default {
 </script>
 
 <template>
-    <div> {{korisnik.profilnaSlika}}</div>
     <div>  Korisnik : {{korisnik.ime}} {{korisnik.prezime}}</div>
-    <div>  Uloga : {{korisnik.Uloga}}</div>
+    <div>  Uloga : {{korisnik.ulogauloga}}</div>
     <div>  Broj Telefona: {{korisnik.brojTelefona}}</div>
     <div>  Prosecna ocena: {{korisnik.prosecnaOcena}} </div>
 
 
-    <div v-if="korisnik.Uloga === 'KUPAC'"> Kupljeni proizvodi:
-      <div v-for="proizvod in korisnik.kupljeniProizvodi"> {{proizvod.naziv}} {{proizvod.cena}} </div>
+    <div v-if="korisnik.ulogauloga === 'KUPAC'"> Kupljeni proizvodi:
+      <div v-for="proizvod in korisnik.proizvodi"> {{proizvod.naziv}} {{proizvod.cena}} </div>
       <div> Recenzije: </div>
         <div v-for="recenzija in korisnik.recenzije"> {{recenzija.ocena}} {{recenzija.komentar}} </div>
   </div>
-  <div v-if="korisnik.Uloga === 'PRODAVAC'"> Proizvodi na prodaju:
+  <div v-if="korisnik.ulogauloga === 'PRODAVAC'"> Proizvodi na prodaju:
     <div v-for="proizvod in korisnik.proizvodi"> {{proizvod.naziv}} {{proizvod.cena}} </div>
     <div> Recenzije: </div>
     <div v-for="recenzija in korisnik.recenzije"> {{recenzija.ocena}} {{recenzija.komentar}}</div>
