@@ -7,6 +7,8 @@ import KupacHomeView from "@/views/KupacHomeView.vue";
 import ProizvodDetaljiKupacView from "@/views/ProizvodDetaljiKupacView.vue";
 import KupacUpdateInfoView from  "@/views/KupacUpdateInfoView.vue";
 import PrikazInformacijaKupca from "@/views/PrikazInformacijaKupca.vue";
+import PregledRecenzijaKupac from "@/views/PregledRecenzijaKupac.vue";
+import PrijavaProfilaKupac from "@/views/PrijavaProfilaKupac.vue";
 const routes = [
     {
         path:'/',
@@ -53,6 +55,16 @@ const routes = [
     path:'/korisnik/kupac/pregled/:id',
         name:'PrikazInformacijaKupca',
         component: PrikazInformacijaKupca,
+    },
+    {
+        path:'/korisnik/kupac/pregledRecenzija',
+        name: 'PregledRecenzijaKupac',
+        component: PregledRecenzijaKupac,
+    },
+    {
+        path:'/prijavaprofila/podnosiprijavu/kupac',
+        name:'PrijavaProfilaKupac',
+        component: PrijavaProfilaKupac,
     }
 ]
 

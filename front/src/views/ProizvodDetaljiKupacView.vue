@@ -24,7 +24,15 @@
       </div>
     </div>
   </nav>
+  <div class="rating-form">
+    <h2 class="oceni-prodavca">Oceni prodavca</h2>
 
+     <input type="text" class="input-zvezdica" name="ocena" placeholder="unesite ocenu prodavca" required v-model="this.OcenjivanjeProdavcaDto.ocena">
+      <span class="rating-counter"></span>
+
+    <textarea class="komentar-recenzija" v-model="this.OcenjivanjeProdavcaDto.komentar" placeholder="Ovde unesite komentar sa recenzijom"></textarea>
+    <button class="ostavi-recenziju" v-on:click="oceniprodavca()" >Pošalji recenziju</button>
+  </div>
   <div v-if="proizvod">
     <h1 class="nazivProizvoda">{{ proizvod.ime }}</h1>
     <img :src="proizvod.slika" alt="slika proizvoda" class="product-image">
@@ -65,6 +73,10 @@ export default {
       novaCena:null,
       message:'',
       najvisaCena:null,
+      OcenjivanjeProdavcaDto:{
+        komentar:'',
+        ocena:'',
+      },
     };
   },
   created() {
@@ -139,6 +151,19 @@ export default {
           }
         });
   },
+    oceniprodavca(){
+      const id=this.proizvod.prodavac.id;
+      console.log(id);
+      axios.post(`http://localhost:8081/korisnik/kupac/oceniProdavca/${id}`,this.OcenjivanjeProdavcaDto,{ withCredentials: true })
+          .then((response) => {
+            console.log(response.data);
+            this.message = response.data;
+          })
+          .catch((error) => {
+            alert(error.response.data);
+          });
+    }
+
   }
 };
 </script>
@@ -211,6 +236,181 @@ footer {
 
 footer {
   margin-top:10%;
+}
+
+.rating-form{
+  margin: 0;
+  width: 50vmin;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-left: 73%;
+  position: absolute;
+  margin-top: 5%;
+
+}
+.oceni-prodavca{
+
+  position: relative;
+  font-family: "Rage Italic";
+}
+.komentar-recenzija{
+  border-radius: 50px;
+  height: 150px;
+  border-color: black;
+}
+.rating-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.rating-form .oceni-prodavca {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  font-size: 0;
+}
+
+.rating-stars .input-zvezdica {
+  display: none;
+}
+
+.star {
+  width: 5vmin;
+  height: 5vmin;
+  background: #000b;
+  display: inline-flex;
+  cursor: pointer;
+  margin: 0.5vmin 0.65vmin;
+  transition: all 2s ease 0s;
+  clip-path: polygon(50% 0%, 66% 32%, 100% 38%, 78% 64%, 83% 100%, 50% 83%, 17% 100%, 22% 64%, 0 38%, 34% 32%);
+}
+
+.star0 {
+  display: none;
+}
+
+.star:before {
+  width: 90%;
+  height: 90%;
+  content: "";
+  background: orange;
+  z-index: -1;
+  display: block;
+  margin-left: 5%;
+  margin-top: 5%;
+  clip-path: polygon(50% 0%, 66% 32%, 100% 38%, 78% 64%, 83% 100%, 50% 83%, 17% 100%, 22% 64%, 0 38%, 34% 32%);
+  background: linear-gradient(90deg, yellow, orange 30% 50%, #184580 50%, 70%, #173a75 100%);
+  background-size: 205% 100%;
+  background-position: 0 0;
+}
+
+.star:hover:before {
+  transition: all 1s ease 0s;
+}
+
+.input-zvezdica:checked + .star ~ .star:before {
+  background-position: 100% 0;
+  transition: all 1s ease 0s;
+}
+
+.input-zvezdica:checked + .star:hover:before {
+  background-position: 0%;
+}
+
+#rs1:checked ~ .rating-counter:before {
+  content: "1";
+}
+
+#rs2:checked ~ .rating-counter:before {
+  content: "2";
+}
+
+#rs3:checked ~ .rating-counter:before {
+  content: "3";
+}
+
+#rs4:checked ~ .rating-counter:before {
+  content: "4";
+}
+
+#rs5:checked ~ .rating-counter:before {
+  content: "5";
+}
+
+.star:hover ~ .rating-counter:before {
+  color: #9aacc6 !important;
+  transition: all 0.5s ease 0s;
+  animation: pulse 1s ease 0s infinite;
+}
+
+@keyframes pulse {
+  50% { font-size: 6.25vmin; }
+}
+
+.star1:hover ~ .rating-counter:before {
+  content: "1" !important;
+}
+
+.star2:hover ~ .rating-counter:before {
+  content: "2" !important;
+}
+
+.star3:hover ~ .rating-counter:before {
+  content: "3" !important;
+}
+
+.star4:hover ~ .rating-counter:before {
+  content: "4" !important;
+}
+
+.star5:hover ~ .rating-counter:before {
+  content: "5" !important;
+}
+
+.input-zvezdica:checked:hover ~ .rating-counter:before {
+  animation: none !important;
+  color: #ffab00 !important;
+}
+
+.komentar-recenzija {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.komentar-recenzija::placeholder {
+  color: #bbb;
+}
+
+.ostavi-recenziju {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.ostavi-recenziju:hover {
+  background-color: #218838;
 }
 
 </style>

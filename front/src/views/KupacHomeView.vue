@@ -105,6 +105,12 @@ export default {
     },
     updateinfo(){
       this.$router.push('/korisnik/logged/kupac/updateinfo')
+    },
+    pregledrRecenzija(){
+      router.push('/korisnik/kupac/pregledRecenzija');
+    },
+    podnesiprijavu(){
+      router.push('/prijavaprofila/podnosiprijavu/kupac');
     }
   }
 };
@@ -125,10 +131,16 @@ export default {
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" v-on:click="pregledrRecenzija()">Pregled recenzija kupca {{this.korisnik.korisnickoIme}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" v-on:click="podnesiprijavu()">Podnesi prijavu</a>
+          </li>
         </ul>
         <form class="d-flex" role="search" @submit.prevent="searchProizvodi">
-          <input class="form-control me-4" type="search" placeholder="Search" v-model="searchTerm"  aria-label="Search">
-          <button class="btn btn-outline-success" v-on:click="searchProizvodi()" type="submit">Search</button>
+          <input class="form-control me-4 search-input" type="search" placeholder="Search" v-model="searchTerm" aria-label="Search">
+          <button class="btn btn-outline-success search-button" v-on:click="searchProizvodi()" type="submit">Search</button>
         </form>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <button v-on:click="logout()" class="btn btn-outline-success">Logout</button>
@@ -205,6 +217,40 @@ export default {
 </template>
 
 <style scoped>
+/* General Form Styling */
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Razmak između inputa i dugmeta */
+}
+
+/* Styling for the Search Input */
+.search-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  flex-grow: 1; /* Omogućava inputu da raste kako bi popunio prostor */
+}
+
+/* Styling for the Search Button */
+.search-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #28a745;
+  color: #28a745;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #28a745;
+  color: white;
+}
+
 #profile-photo{
   width: 20%;
 }
@@ -259,13 +305,10 @@ export default {
   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   color: white;
   border-radius: 10px;
+  margin-left: 50px;
 }
 .btn-outline-success:hover{
   background: green;
-}
-.d-flex{
-  width: 100%;
-  display: block;
 }
 footer {
   margin-top:10%;
