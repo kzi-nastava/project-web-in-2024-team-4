@@ -9,6 +9,7 @@ import KupacUpdateInfoView from  "@/views/KupacUpdateInfoView.vue";
 import PrikazInformacijaKupca from "@/views/PrikazInformacijaKupca.vue";
 import PregledRecenzijaKupac from "@/views/PregledRecenzijaKupac.vue";
 import PrijavaProfilaKupac from "@/views/PrijavaProfilaKupac.vue";
+import AdministratorView from  "@/views/AdministratorView.vue";
 const routes = [
     {
         path:'/',
@@ -65,6 +66,11 @@ const routes = [
         path:'/prijavaprofila/podnosiprijavu/kupac',
         name:'PrijavaProfilaKupac',
         component: PrijavaProfilaKupac,
+    },
+    {
+        path:'/korisnik/logged/admin',
+        name:'AdministratorView',
+        component: AdministratorView,
     }
 ]
 

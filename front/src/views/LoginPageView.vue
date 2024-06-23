@@ -73,7 +73,7 @@ export default {
             } else if (res.data.uloga === 'PRODAVAC') {
               console.log("Korisnik je prodavac");
               this.$router.push("/korisnik/logged/prodavac");
-            }else {
+            }else if(res.data.uloga==='ADMINISTRATOR') {
               this.$router.push("/korisnik/logged/admin");
             }
           })
