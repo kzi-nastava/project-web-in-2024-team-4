@@ -17,27 +17,40 @@ export default {
       tipProdaje:'',
       message:'',
       korisnik:'',
-      currentPage:0,
+      page:0,
       sizePage:4,
+      hasNextPage:null,
     };
   },
   mounted() {
-    this.getProizvodi();
+    this.defaultProizvodi();
+    this.getProizvodi(this.page);
     this.searchProizvodi();
     this.getKategorije();
     this.logged();
     this.getKorisnik();
   },
   methods: {
-    getProizvodi() {
-      axios.get(`http://localhost:8081/proizvod/lista-proizvoda?page=${this.currentPage}&size=${this.sizePage}`, {withCredentials: true})
+    getProizvodi(page) {
+      axios.get(`http://localhost:8081/proizvod/lista-proizvoda`, {params:{page:page,size:this.sizePage},withCredentials: true})
           .then((response) => {
-            this.proizvodi = response.data;
+            console.log(response.data);
+            if (response.status === 204 || response.data.length === 0) {
+              this.proizvodi = [];
+              this.hasNextPage = false;
+            }
+            else {
+              this.proizvodi = response.data;
+              this.page = page;
+              this.hasNextPage = response.data.length === this.sizePage;
+            }
           })
           .catch((error) => {
             console.log(error);
             alert(error.message);
           });
+    },defaultProizvodi() {
+      this.getProizvodi(this.page);
     },
     searchProizvodi(){
       axios.get(`http://localhost:8081/proizvod/search?opis=${this.searchTerm}&naziv=${this.searchTerm}`,{withCredentials:true}).then((response) => {
@@ -227,9 +240,9 @@ export default {
     </div>
   </div>
 
-  <div class="page-switc">
-    <button @click="previousePage()" :disabled="currentPage===0">Prethodna stranica</button>
-    <button @click="nextPage()">Sledeca stranica</button>
+  <div>
+    <button class="btn btn-primary me-md-2" @click="getProizvodi(page - 1)" :disabled="page <= 0">Prethodna</button>
+    <button class="btn btn-primary me-md-2" @click="getProizvodi(page + 1)" :disabled="!hasNextPage">Sledeća</button>
   </div>
   <footer>
     <p style="user-select: none">&copy; {{ new Date().getFullYear() }} - All rights reserved</p>

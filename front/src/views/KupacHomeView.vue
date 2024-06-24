@@ -17,27 +17,40 @@ export default {
       tipProdaje:'',
       message:'',
       korisnik:'',
-      currentPage:0,
+      page:0,
       sizePage:4,
+      hasNextPage:null,
     };
   },
   mounted() {
-    this.getProizvodi();
+    this.defaultProizvodi();
+    this.getProizvodi(this.page);
     this.searchProizvodi();
     this.getKategorije();
     this.logged();
     this.getKorisnik();
   },
   methods: {
-    getProizvodi() {
-      axios.get(`http://localhost:8081/proizvod/lista-proizvoda?page=${this.currentPage}&size=${this.sizePage}`, {withCredentials: true})
+    getProizvodi(page) {
+      axios.get(`http://localhost:8081/proizvod/lista-proizvoda`, {params:{page:page,size:this.sizePage},withCredentials: true})
           .then((response) => {
-            this.proizvodi = response.data;
+            console.log(response.data);
+            if (response.status === 204 || response.data.length === 0) {
+              this.proizvodi = [];
+              this.hasNextPage = false;
+            }
+            else {
+              this.proizvodi = response.data;
+              this.page = page;
+              this.hasNextPage = response.data.length === this.sizePage;
+            }
           })
           .catch((error) => {
             console.log(error);
             alert(error.message);
           });
+    },defaultProizvodi() {
+      this.getProizvodi(this.page);
     },
     searchProizvodi(){
       axios.get(`http://localhost:8081/proizvod/search?opis=${this.searchTerm}&naziv=${this.searchTerm}`,{withCredentials:true}).then((response) => {
@@ -176,17 +189,13 @@ export default {
         <input type="number" class="form-control" id="maxPrice" v-model="maxCena" name="maxPrice" placeholder="Najveca Cena">
       </div>
 
-      <div class="mb-4">
-        <label class="form-label">Kategorije:</label>
-
-        <div class="form-check">
-          <div v-for="kategorija in kategorije">
-            <input class="form-check-input" type="radio" v-model="kategorijaPick" name="category" id="{{kategorija.id}}" :value="kategorija.naziv">
-            <label class="form-check-label" for="category{{kategorija.id}}">
-              {{kategorija.naziv}}
-            </label>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="category">Kategorija</label>
+        <select id="category" v-model="kategorijaPick" required>
+          <option v-for="kategorija in kategorije" :key="kategorija.id" :value="kategorija.naziv">
+            {{kategorija.naziv}}
+          </option>
+        </select>
       </div>
 
       <div class="mb-4">
@@ -222,9 +231,9 @@ export default {
     </div>
   </div>
 
-  <div class="page-switc">
-    <button @click="previousePage()" :disabled="currentPage===0">Prethodna stranica</button>
-    <button @click="nextPage()">Sledeca stranica</button>
+  <div>
+    <button class="btn btn-primary me-md-2" @click="getProizvodi(page - 1)" :disabled="page <= 0">Prethodna</button>
+    <button class="btn btn-primary me-md-2" @click="getProizvodi(page + 1)" :disabled="!hasNextPage">Sledeća</button>
   </div>
   <footer>
     <p style="user-select: none">&copy; {{ new Date().getFullYear() }} - All rights reserved</p>
@@ -334,12 +343,12 @@ footer {
 }
 .mt-5 {
   width: 15%;
-  height: 70%;
+  height: 100%;
   position: fixed;
   display:block;
   margin-left: 50px;
   margin-right: 50px;
-  background: grey;
-  color: #74EBD5;
+  color: black;
+  background: #f4f4f4;
 }
 </style>
