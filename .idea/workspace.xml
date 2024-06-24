@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ffae4b9-af02-49a0-b163-514adc74e399" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/front/src/views/AdministratorObradaPrijava.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/views/DetaljanPrikazProfilaIzProdavca.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/views/PregledSvihProfilaProdavac.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/views/ProdavacUpdateInfoView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/views/ProizvodDetaljiProdavacView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/AdministratorView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/AdministratorView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/Enumeracije/StatusPrijave.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/Enumeracije/StatusPrijave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/KupacHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/KupacHomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/LoginPageView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/LoginPageView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/NeprijavljeniKorisnikHomePageView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/NeprijavljeniKorisnikHomePageView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/PrikazInformacijaKupca.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/PrikazInformacijaKupca.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/ProdavacHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/ProdavacHomeView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/PrijavaProfila.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/model/PrijavaProfila.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/PrijavaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/PrijavaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/service/KorisnikService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-shop/src/main/java/com/webshop/repository/ProizvodRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +183,7 @@
       <workItem from="1719062437094" duration="11332000" />
       <workItem from="1719077222856" duration="9159000" />
       <workItem from="1719138224928" duration="26111000" />
-      <workItem from="1719215840769" duration="8753000" />
+      <workItem from="1719215840769" duration="26744000" />
     </task>
     <servers />
   </component>
@@ -225,7 +228,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/web-shop/src/main/java/com/webshop/controller/KorisnikController.java</url>
-          <line>567</line>
+          <line>569</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

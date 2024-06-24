@@ -306,14 +306,16 @@ public class KorisnikController {
         }
         if (korisnikPrijavljen.getUloga() == UlogaKorisnika.Uloga.PRODAVAC) {
             List<Korisnik> korisnik = korisnikRepository.findAll();
-            List<OsnovneInformacijePregledProfilaDto> osnovneInformacijePregledProfilaDtos = new ArrayList<>();
+            List<Korisnik>samoKorisnici=new ArrayList<>();
+           // List<OsnovneInformacijePregledProfilaDto> osnovneInformacijePregledProfilaDtos = new ArrayList<>();
             for (Korisnik k : korisnik) {
                 if (k.getUloga() == UlogaKorisnika.Uloga.KUPAC || k.getUloga() == UlogaKorisnika.Uloga.PRODAVAC) {
-                    OsnovneInformacijePregledProfilaDto osnovneInformacijePregledProfilaDto=new OsnovneInformacijePregledProfilaDto(k);
-                    osnovneInformacijePregledProfilaDtos.add(osnovneInformacijePregledProfilaDto);
+//                    OsnovneInformacijePregledProfilaDto osnovneInformacijePregledProfilaDto=new OsnovneInformacijePregledProfilaDto(k);
+//                    osnovneInformacijePregledProfilaDtos.add(osnovneInformacijePregledProfilaDto);
+                    samoKorisnici.add(k);
                 }
             }
-            return  ResponseEntity.ok(osnovneInformacijePregledProfilaDtos);
+            return  ResponseEntity.ok(samoKorisnici);
         }else{
             return new ResponseEntity<>("Zabranjen pristup za korisnike koji nisu PRODAVAC", HttpStatus.FORBIDDEN);
         }
@@ -359,7 +361,7 @@ public class KorisnikController {
 
             return ResponseEntity.ok(dto);
         } else if (korisnikZaPregled.getUloga()== UlogaKorisnika.Uloga.KUPAC) {
-            List<Proizvod> proizvods=korisnikService.getAllProizvodi(id);
+            List<Proizvod> proizvods=proizvodRepository.findAllByKupac(korisnikZaPregled);
             List<Recenzija>recenzijas=korisnikService.getAllRecenzije(id);
             double prosecnaOcena= korisnikService.getProsecnaOcena(id);
             InformacijeOKupcuDto dto=new InformacijeOKupcuDto(korisnikZaPregled.getIme(),
