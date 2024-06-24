@@ -63,4 +63,5 @@ public class KupacDto implements Serializable {
     public String getOpis() {
         return opis;
     }
+    // OBRisano nepotrebno
 }
