@@ -298,13 +298,13 @@ footer {
 }
 .mt-5 {
   width: 15%;
-  height: 70%;
+  height: 100%;
   position: fixed;
   display:block;
   margin-left: 50px;
   margin-right: 50px;
-  background: grey;
-  color: #74EBD5;
+  color: black;
+  background: #f4f4f4;
 }
 
 </style>

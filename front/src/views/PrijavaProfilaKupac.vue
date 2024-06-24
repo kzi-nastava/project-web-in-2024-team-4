@@ -38,7 +38,7 @@ export default {
     },
     getKorisnik(){
       this.korisnik=JSON.parse(localStorage.getItem('korisnik'));
-     //console.log(this.korisnik);
+     console.log(this.korisnik);
       },
     openMenu(imeP,id){
       this.isMenuOpen=true;

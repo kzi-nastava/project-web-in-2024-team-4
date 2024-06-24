@@ -16,6 +16,7 @@ import ProdavacUpdateInfoView from "@/views/ProdavacUpdateInfoView.vue";
 import ProizvodDetaljiProdavacView from "@/views/ProizvodDetaljiProdavacView.vue";
 import PregledSvihProfilaProdavac from "@/views/PregledSvihProfilaProdavac.vue";
 import DetaljanPrikazProfilaIzProdavca from "@/views/DetaljanPrikazProfilaIzProdavca.vue";
+import DodajProizvodForma from "@/views/DodajProizvodForma.vue";
 const routes = [
     {
         path:'/',
@@ -106,6 +107,11 @@ const routes = [
         path:'/logged/prodavac/pregled/:id/:uloga',
         name:'DetaljanPrikazProfilaIzProdavca',
         component: DetaljanPrikazProfilaIzProdavca,
+    },
+    {
+        path: '/logged/prodavac/dodajproizvod',
+        name: 'DodajProizvodForma',
+        component: DodajProizvodForma,
     }
 ]
 

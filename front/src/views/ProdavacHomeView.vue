@@ -126,6 +126,9 @@ export default {
     },
     pregledSvihProfila(){
       this.$router.push('/logged/prodavac/pregled');
+    },
+    dodajProizvod(){
+      this.$router.push('/logged/prodavac/dodajproizvod');
     }
   }
 };
@@ -151,6 +154,9 @@ export default {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" v-on:click="podnesiprijavu()">Podnesi prijavu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" v-on:click="dodajProizvod()">Dodaj Proizvod</a>
           </li>
         </ul>
         <form class="d-flex" role="search" @submit.prevent="searchProizvodi">
@@ -179,17 +185,13 @@ export default {
         <input type="number" class="form-control" id="maxPrice" v-model="maxCena" name="maxPrice" placeholder="Najveca Cena">
       </div>
 
-      <div class="mb-4">
-        <label class="form-label">Kategorije:</label>
-
-        <div class="form-check">
-          <div v-for="kategorija in kategorije">
-            <input class="form-check-input" type="radio" v-model="kategorijaPick" name="category" id="{{kategorija.id}}" :value="kategorija.naziv">
-            <label class="form-check-label" for="category{{kategorija.id}}">
-              {{kategorija.naziv}}
-            </label>
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="category">Kategorija</label>
+        <select id="category" v-model="kategorijaPick" required>
+          <option v-for="kategorija in kategorije" :key="kategorija.id" :value="kategorija.naziv">
+            {{kategorija.naziv}}
+          </option>
+        </select>
       </div>
 
       <div class="mb-4">
@@ -337,12 +339,12 @@ footer {
 }
 .mt-5 {
   width: 15%;
-  height: 70%;
+  height: 100%;
   position: fixed;
   display:block;
   margin-left: 50px;
   margin-right: 50px;
-  background: grey;
-  color: #74EBD5;
+  color: black;
+  background: #f4f4f4;
 }
 </style>
