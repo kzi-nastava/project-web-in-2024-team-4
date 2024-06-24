@@ -15,16 +15,16 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("KUPAC")
 public class Kupac extends Korisnik{
-    @OneToMany(mappedBy ="kupac",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy ="kupac",fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Proizvod> kupljeniProizvodi;
-    @OneToMany(mappedBy = "korisnikPrimio",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "korisnikPrimio",fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Recenzija> dobijeneRecenzije;
-    @OneToMany(mappedBy = "korisnikDao",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "korisnikDao",fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Recenzija> dateRecenzije;
-    @OneToMany(mappedBy = "kupac",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "kupac",fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Ponuda>ponude;
     @Column

@@ -29,7 +29,7 @@ public class Proizvod implements Serializable {
     private LocalDate datumObjavljivanja;
 
     //Ponuda
-    @OneToMany(mappedBy = "proizvod",fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "proizvod",fetch = FetchType.EAGER)
     private List<Ponuda>ponude=new ArrayList<>();
 
     //Prodavac

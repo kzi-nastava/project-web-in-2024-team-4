@@ -86,17 +86,21 @@ public class ProizvodController {
         }
         Proizvod proizvod = proizvodRepository.getProizvodsById(id);
         Korisnik korisnik =proizvod.getProdavac();
-
             Kupac kupac = (Kupac) prijavljeniKorisnik;
             List<Proizvod> kupljeniProizvodi = kupac.getKupljeni_proizvodi();
             Prodavac prodavac = (Prodavac) korisnik;
             List<Proizvod> proizvodiNaProdaju = prodavac.getProizvodi_na_prodaju();
             if (proizvod.getTipProdaje() == TipProdaje.tipProdaje.FiksnaCena) {
                 if (!proizvod.isProdat()) {
+                    proizvod.setKupac(kupac);
                     kupljeniProizvodi.add(proizvod);
+                    kupac.setKupljeni_proizvodi(proizvodiNaProdaju);
                     proizvod.setProdat(true);
+                    korisnikRepository.save(kupac);
                     proizvodRepository.save(proizvod);
                     proizvodiNaProdaju.remove(proizvod);
+                    prodavac.setProizvodi_na_prodaju(proizvodiNaProdaju);
+                    korisnikRepository.save(prodavac);
                     String prodavacEmail=prodavac.getEmailAdresa();
                     String proizvodNaziv=proizvod.getNaziv();
                     String kupacEmail=kupac.getEmailAdresa();
