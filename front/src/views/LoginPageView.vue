@@ -71,7 +71,7 @@ export default {
               console.log(res.data.uloga);
               this.$router.push("/korisnik/logged/kupac");
             } else if (res.data.uloga === 'PRODAVAC') {
-              console.log("Korisnik je prodavac");
+              console.log(res.data.uloga);
               this.$router.push("/korisnik/logged/prodavac");
             }else if(res.data.uloga==='ADMINISTRATOR') {
               this.$router.push("/korisnik/logged/admin");
@@ -105,9 +105,9 @@ export default {
         const korisnik = JSON.parse(localStorage.getItem('korisnik'));
         if (korisnik.uloga === 'KUPAC') {
           this.$router.push("/korisnik/logged/kupac");
-        } else if (korisnik.ulogauloga === 'PRODAVAC') {
+        } else if (korisnik.uloga === 'PRODAVAC') {
           this.$router.push("/korisnik/logged/prodavac");
-        }else {
+        }else if(korisnik.uloga==='ADMINISTRATOR') {
           this.$router.push("/korisnik/logged/admin");
         }
       }

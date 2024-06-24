@@ -17,6 +17,8 @@ export default {
       tipProdaje:'',
       message:'',
       korisnik:'',
+      currentPage:0,
+      sizePage:4,
     };
   },
   mounted() {
@@ -28,7 +30,7 @@ export default {
   },
   methods: {
     getProizvodi() {
-      axios.get('http://localhost:8081/proizvod/lista-proizvoda', {withCredentials: true})
+      axios.get(`http://localhost:8081/proizvod/lista-proizvoda?page=${this.currentPage}&size=${this.sizePage}`, {withCredentials: true})
           .then((response) => {
             this.proizvodi = response.data;
           })
@@ -111,7 +113,17 @@ export default {
     },
     podnesiprijavu(){
       router.push('/prijavaprofila/podnosiprijavu/kupac');
-    }
+    },
+  nextPage(){
+    this.currentPage++;
+    this.getProizvodi();
+    console.log(this.currentPage);
+  },
+  previousePage(){
+    this.currentPage--;
+    this.getProizvodi();
+    console.log(this.currentPage);
+  },
   }
 };
 </script>
@@ -210,7 +222,10 @@ export default {
     </div>
   </div>
 
-
+  <div class="page-switc">
+    <button @click="previousePage()" :disabled="currentPage===0">Prethodna stranica</button>
+    <button @click="nextPage()">Sledeca stranica</button>
+  </div>
   <footer>
     <p style="user-select: none">&copy; {{ new Date().getFullYear() }} - All rights reserved</p>
   </footer>

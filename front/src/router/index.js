@@ -11,6 +11,11 @@ import PregledRecenzijaKupac from "@/views/PregledRecenzijaKupac.vue";
 import PrijavaProfilaKupac from "@/views/PrijavaProfilaKupac.vue";
 import AdministratorView from  "@/views/AdministratorView.vue";
 import AdministratorObradaPrijava from "@/views/AdministratorObradaPrijava.vue";
+import ProdavacHomeView from '@/views/ProdavacHomeView.vue';
+import ProdavacUpdateInfoView from "@/views/ProdavacUpdateInfoView.vue";
+import ProizvodDetaljiProdavacView from "@/views/ProizvodDetaljiProdavacView.vue";
+import PregledSvihProfilaProdavac from "@/views/PregledSvihProfilaProdavac.vue";
+import DetaljanPrikazProfilaIzProdavca from "@/views/DetaljanPrikazProfilaIzProdavca.vue";
 const routes = [
     {
         path:'/',
@@ -77,6 +82,30 @@ const routes = [
         path: '/korisnik/logged/admin/prijaveprofila',
         name:'AdministratorObradaPrijava',
         component:AdministratorObradaPrijava
+    },
+    {
+        path: '/korisnik/logged/prodavac',
+        name: 'ProdavacHomeView',
+        component: ProdavacHomeView,
+    },
+    {
+        path: '/korisnik/logged/prodavac/updateinfo',
+        name:'ProdavacUpdateInfoView',
+        component: ProdavacUpdateInfoView,
+    },{
+        path:'/korisnik/logged/prodavac/proizvod-detalji/:id',
+        name:'ProizvodDetaljiProdavacView',
+        component: ProizvodDetaljiProdavacView,
+    },
+    {
+        path: '/logged/prodavac/pregled',
+        name:'PregledSvihProfilaProdavac',
+        component: PregledSvihProfilaProdavac
+    },
+    {
+        path:'/logged/prodavac/pregled/:id/:uloga',
+        name:'DetaljanPrikazProfilaIzProdavca',
+        component: DetaljanPrikazProfilaIzProdavca,
     }
 ]
 

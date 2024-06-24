@@ -51,6 +51,9 @@ export default{
     <label for="phone-number">Broj telefona</label>
     <input type="text" id="phone-number" v-model="korisnik.brojTelefona" name="brojTelefona" readonly>
 
+    <label for="avg-rating">Prosecna ocena</label>
+    <input type="text" id="phone-number" v-model="korisnik.prosecnaOcena" name="brojTelefona" readonly>
+
     <label for="bio">O sebi:</label>
     <textarea id="bio" v-model="korisnik.opis" name="opis"></textarea>
   </form>
@@ -64,6 +67,16 @@ export default{
         <p class="card-text">{{proizvod.opis}}</p>
         <p class="card-text"><strong>Cena {{proizvod.cena}} RSD</strong></p>
         <router-link :to="{ name: 'ProizvodDetaljiKupacView', params: { id: proizvod.id } }" class="btn btn-primary">Vidi još</router-link>
+      </div>
+    </div>
+  </div>
+  <div><h1 class="proizvod">Recenzije koje je dobio korisnik</h1></div>
+  <div class="card-deck">
+    <div v-if="korisnik" v-for="recenzija in korisnik.dobijeneRecenzije" :key="recenzija.id" class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Komentar: {{recenzija.komentar}}</h5>
+        <p class="card-text">Ocena: {{recenzija.ocena}}</p>
+        <p class="card-text"><strong>Datum Recenzije {{recenzija.datumRecenzije}}</strong></p>
       </div>
     </div>
   </div>

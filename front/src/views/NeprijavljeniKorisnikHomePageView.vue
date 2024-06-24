@@ -9,13 +9,14 @@ export default {
       proizvodi: [],
       searchTerm:'',
       searchOpis:'',
-      proizvod: [],
       ID:'',
       kategorije:[],
       maxCena:'',
       minCena:'',
       kategorijaPick:'',
       tipProdaje:'',
+      currentPage:0,
+      sizePage:4,
     };
   },
   mounted() {
@@ -26,9 +27,10 @@ export default {
   },
   methods: {
     getProizvodi() {
-      axios.get('http://localhost:8081/proizvod/lista-proizvoda', {withCredentials: true})
+      axios.get(`http://localhost:8081/proizvod/lista-proizvoda`, {params:{page:this.currentPage,size:this.sizePage},withCredentials: true})
           .then((response) => {
             this.proizvodi = response.data;
+            console.log(this.proizvodi);
           })
           .catch((error) => {
             console.log(error);
@@ -92,12 +94,22 @@ export default {
         const korisnik = JSON.parse(localStorage.getItem('korisnik'));
         if (korisnik.uloga === 'KUPAC') {
           this.$router.push("/korisnik/logged/kupac");
-        } else if (korisnik.ulogauloga === 'PRODAVAC') {
+        } else if (korisnik.uloga === 'PRODAVAC') {
           this.$router.push("/korisnik/logged/prodavac");
         }else {
           this.$router.push("/korisnik/logged/admin");
         }
       }
+    },
+    nextPage(){
+      this.currentPage++;
+      this.getProizvodi();
+      console.log(this.currentPage);
+    },
+    previousePage(){
+      this.currentPage--;
+      this.getProizvodi();
+      console.log(this.currentPage);
     },
     }
 };
@@ -177,7 +189,7 @@ export default {
   </div>
 
   <div><h1 class="proizvod">Proizvodi</h1></div>
-  <div class="card-deck">
+  <div class="card-deck" >
     <div v-for="proizvod in proizvodi" :key="proizvod.id" class="card" style="width: 18rem;">
       <img :src="proizvod.slika" class="card-img-top" alt="slika">
       <div class="card-body">
@@ -189,7 +201,10 @@ export default {
     </div>
   </div>
 
-
+  <div class="page-switc">
+    <button @click="previousePage()" :disabled="currentPage===0">Prethodna stranica</button>
+    <button @click="nextPage()">Sledeca stranica</button>
+  </div>
   <footer>
     <p style="user-select: none">&copy; {{ new Date().getFullYear() }} - All rights reserved</p>
   </footer>
