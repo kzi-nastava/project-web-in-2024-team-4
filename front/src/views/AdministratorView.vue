@@ -1,9 +1,15 @@
 <script>
 import axios from "axios";
 import router from "@/router";
+import prijavaProfilaKupac from "@/views/PrijavaProfilaKupac.vue";
 
 export default {
   name: "AdministratorView",
+  computed: {
+    prijavaProfilaKupac() {
+      return prijavaProfilaKupac
+    }
+  },
   data() {
     return {
       korisnik: {},
@@ -85,13 +91,15 @@ export default {
     deleteRecenzija(id){
       axios.post(`http://localhost:8081/korisnik/administrator/recenzije/obrisi?id=${id}`,this.korisnik, {withCredentials: true})
           .then((response) => {
-            //this.recenzije = response.data;
             console.log(response.data);
           })
           .catch((error) => {
             console.log(error.data);
           });
     },
+    goPrijaveProfila(){
+      this.$router.push('/korisnik/logged/admin/prijaveprofila');
+    }
   }
 };
 </script>
@@ -109,7 +117,7 @@ export default {
             <a class="nav-link active" aria-current="page" href="/">Recenzije</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/administrator_prijave">Prijave Profila</a>
+            <a class="nav-link active" aria-current="page" href="#" v-on:click="goPrijaveProfila()" >Prijave Profila</a>
           </li>
         </ul>
         <div @load="getLoggedUser" class="d-grid gap-2 d-md-flex justify-content-md-end">
