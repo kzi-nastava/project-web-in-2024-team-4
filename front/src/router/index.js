@@ -17,6 +17,7 @@ import ProizvodDetaljiProdavacView from "@/views/ProizvodDetaljiProdavacView.vue
 import PregledSvihProfilaProdavac from "@/views/PregledSvihProfilaProdavac.vue";
 import DetaljanPrikazProfilaIzProdavca from "@/views/DetaljanPrikazProfilaIzProdavca.vue";
 import DodajProizvodForma from "@/views/DodajProizvodForma.vue";
+import EditProizvodForma from "@/views/EditProizvodForma.vue";
 const routes = [
     {
         path:'/',
@@ -112,6 +113,11 @@ const routes = [
         path: '/logged/prodavac/dodajproizvod',
         name: 'DodajProizvodForma',
         component: DodajProizvodForma,
+    },
+    {
+        path:'/logged/prodavac/pregled/edit/:id',
+        name:'EditProizvodForma',
+        component:EditProizvodForma,
     }
 ]
 

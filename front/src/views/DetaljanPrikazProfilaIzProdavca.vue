@@ -96,6 +96,7 @@ export default {
         <p class="card-text">{{proizvod.opis}}</p>
         <p class="card-text"><strong>Cena {{proizvod.cena}} RSD</strong></p>
       </div>
+      <router-link :to="{ name: 'EditProizvodForma', params: { id: proizvod.id } }" class="btn btn-primary">Edit proizvod</router-link>
     </div>
   </div>
   <div><h1 class="proizvod">Recenzije koje je dobio korisnik</h1></div>

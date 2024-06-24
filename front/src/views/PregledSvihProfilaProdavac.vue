@@ -38,7 +38,10 @@ export default {
     },
     detaljiKorisnici(id){
       this.$router.push(`/logged/prodavac/pregled/${id}`);
-    }
+    },
+  home(){
+    this.$router.push('/');
+  }
   }
 };
 </script>
@@ -56,7 +59,10 @@ export default {
       </div>
     </div>
   </div>
-
+  <br>
+  <br>
+  <br>
+  <button @click="home()">Na pocetnu</button>
 </template>
 
 <style scoped>
