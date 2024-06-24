@@ -70,11 +70,11 @@ INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_p
 INSERT INTO RECENZIJA (datum_recenzije,ocena,komentar,korisnik_dao_id,korisnik_primio_id) values (current_date,4.55,'Neki komentar5',3,1);
 
 
-INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,1,3,'nisu placeni racuni','Podneta');
-INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,2,2,'prekoracenje interneta','Podneta');
-INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,3,1,'roming','Podneta');
-INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,4,1,'nesto','Podneta');
-INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,3,2,'nesto','Podneta');
+INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,2,1,'nisu placeni racuni','Podneta');
+INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,6,3,'prekoracenje interneta','Podneta');
+INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,2,4,'roming','Podneta');
+INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,6,7,'nesto','Podneta');
+INSERT INTO PRIJAVA_PROFILA (datum_podnosenja_prijave,odnosi_se_prijava_id,podneo_prijavu_id,razlog_prijave,status_prijave) values (current_date,6,1,'nesto','Podneta');
 /*
 INSERT INTO PROIZVOD_PONUDE (proizvod_id,PONUDE_ID) values (1,1);
 INSERT INTO PROIZVOD_PONUDE (proizvod_id,PONUDE_ID) values (2,2);

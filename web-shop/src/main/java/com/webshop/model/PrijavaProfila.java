@@ -19,12 +19,12 @@ public class PrijavaProfila implements Serializable {
     private LocalDate datumPodnosenjaPrijave;
     @ManyToOne
     @JoinColumn(name = "podneoPrijavu_ID", referencedColumnName = "id")
-    @JsonIgnore
+    //@JsonIgnore
     private Korisnik korisnikPodnositelj;
 
     @ManyToOne
     @JoinColumn(name = "odnosiSePrijava_ID", referencedColumnName = "id")
-    @JsonIgnore
+   // @JsonIgnore
     private Korisnik korisnikOdnosiSe;
 
 

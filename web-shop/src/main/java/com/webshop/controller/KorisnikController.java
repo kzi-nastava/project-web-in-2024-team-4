@@ -615,8 +615,8 @@ public class KorisnikController {
     //4.2 Funkcionalnost
 
     @PostMapping("/administrator/podneseneprijave/obrada/{id}")
-    public ResponseEntity<?> administratorObarada(HttpSession session,@PathVariable Long id,@RequestParam Boolean odluka,@Nullable @RequestParam String razlogOdbijanja){
-        Korisnik prijavljeniKorisnik = (Korisnik) session.getAttribute("korisnik");
+    public ResponseEntity<?> administratorObarada(@RequestBody Korisnik prijavljeniKorisnikFront, HttpSession session,@PathVariable Long id,@RequestParam Boolean odluka,@Nullable @RequestParam String razlogOdbijanja){
+        Korisnik prijavljeniKorisnik =prijavljeniKorisnikFront;
         if(prijavljeniKorisnik==null){
             return new ResponseEntity<>("Niste ulogovani", HttpStatus.BAD_REQUEST);
         }
